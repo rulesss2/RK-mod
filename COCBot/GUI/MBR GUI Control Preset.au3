@@ -216,7 +216,7 @@ Func MakeSavePresetMessage()
 			If $i = $TS Then $message &= $scmbAttackTHType & @CRLF
 
 			If ($i = $DB Or $i = $LB) And $iAtkAlgorithm[$i] = 0 Then
-				Local $tmp = StringSplit("one side|two sides|three sides|four sides|Classic Four Fingers|DE side|TH side", "|", 2)	;	Added FourFinger DEMEN
+				Local $tmp = StringSplit("one side|two sides|three sides|four sides|Multi Finger|Classic Four Fingers|DE side|TH side", "|", 2)
 				$message &= $tmp[$iChkDeploySettings[$i]] & @CRLF
 			EndIf
 		EndIf

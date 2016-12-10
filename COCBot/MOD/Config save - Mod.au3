@@ -115,7 +115,7 @@
 	IniWrite($config, "Android", "Emulator", GUICtrlRead($cmbAndroid))
 	IniWrite($config, "Android", "Instance", GUICtrlRead($txtAndroidInstance))
 
-	; Misc Battle Settings - Added by LunaEclipse
+	; Misc Battle Settings - - Added by rulesss
 	If GUICtrlRead($chkFastADBClicks) = $GUI_CHECKED Then
 		IniWrite($config, "Fast Clicks", "UseADBFastClicks", 1)
 	Else
@@ -139,5 +139,9 @@
 	IniWriteS($config, "Lang", "chkRusLang2", $ichkRusLang2)
 	;==========;Russian Languages by Kychera==========
 
-	; Multi Finger (LunaEclipse)
+	; Multi Finger - Added by rulesss
     IniWrite($config, "MultiFinger", "Select", $iMultiFingerStyle)
+
+	; CSV Deployment Speed Mod
+	IniWriteS($config, "attack", "CSVSpeedDB", $isldSelectedCSVSpeed[$DB])
+	IniWriteS($config, "attack", "CSVSpeedAB", $isldSelectedCSVSpeed[$LB])

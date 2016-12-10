@@ -55,7 +55,20 @@ Local $x = 25, $y = 20
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "DuplicateScriptAB")
 
-GUICtrlCreateGroup("", -99, -99, 1, 1)
+; CSV Deployment Speed Mod
+		$y += 134
+		$grpScriptSpeedAB = GUICtrlCreateGroup(GetTranslated(607,30, -1), $x+10, $y, 230, 50)
+			$lbltxtSelectedSpeedAB = GUICtrlCreateLabel(GetTranslated(607,31, -1), $x + 20, $y+20, 75, 25)
+				_GUICtrlSetTip(-1, GetTranslated(607,32, -1))
+			$sldSelectedSpeedAB = GUICtrlCreateSlider($x + 108, $y + 20, 125, 25, BitOR($TBS_TOOLTIPS, $TBS_AUTOTICKS))
+				_GUICtrlSetTip(-1, GetTranslated(607,33, -1))
+				_GUICtrlSlider_SetTipSide(-1, $TBTS_BOTTOM)
+				_GUICtrlSlider_SetTicFreq(-1, 1)
+				GUICtrlSetLimit(-1, 18, 0) ; change max/min value
+				GUICtrlSetData(-1, 5) ; default value
+				GUICtrlSetOnEvent(-1, "sldSelectedSpeedAB")
+
+	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 ;GUISetState()
 
