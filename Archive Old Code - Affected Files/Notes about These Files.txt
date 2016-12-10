@@ -1,0 +1,74 @@
+These are Copies of the files that are either changed or Completely removed from the code:
+---------
+Nov 5 2016 4:31pm - Added Files to this Folder only. Main code not changed as of yet.
+	Git will be slowly updated with unused file(s) removal and or unused Functions from
+	The Listed Files. : some files are not listed here as they only needed some minor changes
+	to remove a call to a function that has been removed. - Ezeck
+----------
+Nov 5 2016 5:00pm - Pushed these changes to Git Develop Branch
+	Remove: _TrainMoveBtn.au3
+	Remove: checkArmyCamp.au3
+	Remove: _ReduceMemory.au3
+	File update remove Used Code: AppUserModelid.au3
+	File update remove Used Code: BoostBarracks.au3
+	File update remove Used Code:BotDetectFirstTime.au3
+	Updated Includes in MBR Functions.au3
+	Remove Un needed MyBot.Run exe
+	Remove Un needed MyBot.Run_Stripped.au3  
+	Updated This Removal log -- Ezeck
+--------
+Nov 6 2016 9:00am changes to git
+	Remove CheckFullArmy.au3
+	Remove GetArmyCapacity.au3
+	Remove getArmySpellCapacity.au3
+	Remove getArmySpellCount.au3
+	Remove getArmyTroopCount.au3
+	Remove isBarrack.au3
+	remove Spell.au3
+	File Update - MBR GUI Action.au3 comment call getArmyCapacity
+	File Udate IsSearchModeActive.au3
+	File Update CheckBaseQuick.au3
+	File Update GUI Control Bot Options.au3
+	File Update Unbreakable.au3
+	File Update VillageSearch.au3
+	File Update MyBot.Run.au3
+	File Update villageSearch.au3 Global in Function
+	FileUpdate Global Variables.au3 Fix for Global $isModeActive[$iModeCount] Declarded in Function
+	FileUpdate VillageSearch.au3 Fix for Global $isModeActive[$iModeCount] Declarded in Function
+   Ezeck
+---------------------
+Nov 6 2016 5:17 Push to Git
+	Remove BinaryCall.au3
+	Remove JSON.au3
+	File update CheckVersion.au3  to Html only
+	File update MBR Functions  
+	File MBR GUI Control.au3 Update to versionck html only
+	MyBot.run.au3 Version ck html only. removed some old varibles
+Ezeck
+--------------------
+Nov 7 2016 4:15 Push to Git
+	Remove BlockInputEx.au3
+	Update MBR functions
+ezeck
+----------------------
+ Nov 7 2016 6:00pm Push to Git
+	Remove some Manual locate buttons (code was only commented out to preserve)
+		Changed some spacing layout of remaining buttons
+	File Update MBR GUI Design Child Village - Misc.au3
+	File Update MBR GUI Control child Misc.au3
+	File Update MBR GUI Control Child Upgrade.au3 (make lab button visable always)
+ezeck
+------------------
+Nov 9 2016 3:16 Push to git develop
+	Project Clean Up Removed some variables
+	Variables commented and moved to bottom of
+	Global Variables.au3
+
+	updated some the previous removes and file changes that were
+	lost during some Unknown GitHub Event.
+Ezeck
+--------------------
+
+
+		
+
