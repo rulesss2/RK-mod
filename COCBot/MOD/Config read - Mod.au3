@@ -51,7 +51,7 @@
 	  $sAndroid = IniRead($config, "Android", "Emulator", "<No Emulators>")
 	  $sAndroidInstance = IniRead($config, "Android", "Instance", "")
 
-	  ; Misc Battle Settings - Added by LunaEclipse
+	  ; Misc Battle Settings - Added by rulesss
 	  $AndroidAdbClicksEnabled = IniRead($config, "Fast Clicks", "UseADBFastClicks", "0")
 
 	  ;==========;Russian Languages by Kychera==========
@@ -59,7 +59,10 @@
        $ichkRusLang2 = IniRead($config, "Lang", "chkRusLang2", "0")
 	  ;==========;Russian Languages by Kychera==========
 
-	  ; Multi Finger (LunaEclipse)
+	  ; Multi Finger - Added by rulesss
       $iMultiFingerStyle = IniRead($config, "MultiFinger", "Select", "2")
 	  ;=======
-	  
+
+	  ; CSV Deployment Speed Mod-- Added by rulesss
+		IniReadS($isldSelectedCSVSpeed[$DB], $config, "attack", "CSVSpeedDB", 3)
+		IniReadS($isldSelectedCSVSpeed[$LB], $config, "attack", "CSVSpeedAB", 3)
