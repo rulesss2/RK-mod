@@ -41,7 +41,7 @@ Global $sBotVersion = "v6.2.2" ;~ Don't add more here, but below. Version can't 
 Global $sModversion = "" ;<== Just Change This to Version Number
 Global $sModSupportUrl = "https://mybot.run/forums/index.php?/topic/24893-mybotrun-dococ-v322-oct-sc-update/" ;<== Our Website Link Or Link Download
 
-Global $sBotTitle = "My Bot " & $sBotVersion & "  RK MOD v 1.9 "  ;~ Don't use any non file name supported characters like \ / : * ? " < > |
+Global $sBotTitle = "My Bot " & $sBotVersion & "  RK MOD v 2.0 "  ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
 Global $sBotTitleDefault = $sBotTitle
 
