@@ -135,7 +135,7 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 		$x += 120
 	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		;_GUICtrlSetTip(-1, "Fish" & @CRLF & "Ship")
-		GUICtrlSetData(-1, GetTranslated(1010,100, "Key1|Key2|Key3|Key4|Key5|Key6|Key7|Key8", "Key1"))
+		GUICtrlSetData(-1, GetTranslated(1010,100, "Key1|Key2|Key3|Key4|Key5|Key6|Key7|Key8"), "Key1")
 		GUICtrlSetOnEvent(-1,"BackGr")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
