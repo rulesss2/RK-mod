@@ -523,7 +523,9 @@ Func ChatbotPushbulletSendChat()
    _GDIPlus_ImageDispose($hBitmap)
    ;push the file
    SetLog("Chatbot: Sent chat image", $COLOR_GREEN)
-   _PushFileToPushBullet($ChatFile, "Loots", "image/jpeg", $iOrigPushBullet & " | Last Clan Chats" & "\n" & $ChatFile)
+   ;========Modified Kychera===========
+   NotifyPushFileToBoth($ChatFile, "Loots", "image/jpeg", $NotifyOrigin & " | Last Clan Chats" & "\n" & $ChatFile)
+   ;===================
    ;wait a second and then delete the file
    _Sleep(500)
    Local $iDelete = FileDelete($dirLoots & $ChatFile)
@@ -787,7 +789,9 @@ Func ChatbotMessage() ; run the chatbot
 			For $a = 0 To UBound($ChatbotQueuedChats) - 1
 				$ChatToSend = $ChatbotQueuedChats[$a]
 				If Not ChatbotChatClanInput() Then Return
-				If Not ChatbotChatInput($ChatToSend) Then Return
+				;===Modified Kychera=====
+				If Not ChatbotChatInput(_Encoding_JavaUnicodeDecode($ChatToSend)) Then Return
+				;========================
 				If Not ChatbotChatSendClan() Then Return
 			Next
 
@@ -882,6 +886,41 @@ EndFunc   ;==>ChatbotMessage
     ; Chatbot script fixed by rulesss, Kychera
 	Script Function: Sends chat messages in global and clan chat; 11.2016 switching lang global chat - Kychera
 #ce ----------------------------------------------------------------------------
-
- 
+;===========Addied kychera=================
+; #FUNCTION# ====================================================================================================================
+; Name ..........: _Encoding_JavaUnicodeDecode
+; Description ...: Decode string from Java Unicode format.
+; Syntax ........: _Encoding_JavaUnicodeDecode($sString)
+; Parameters ....: $sString             - String to decode.
+; Return values .: Decoded string.
+; Author ........: amel27
+; Modified ......: 
+; Remarks .......: 
+; Related .......: 
+; Link ..........: 
+; Example .......: No
+; ===============================================================================================================================
+Func _Encoding_JavaUnicodeDecode($sString)
+	Local $iOld_Opt_EVS = Opt('ExpandVarStrings', 0)
+	Local $iOld_Opt_EES = Opt('ExpandEnvStrings', 0)
+	
+	Local $sOut = "", $aString = StringRegExp($sString, "(\\\\|\\'|\\u[[:xdigit:]]{4}|[[:ascii:]])", 3)
+	
+	For $i = 0 To UBound($aString) - 1
+		Switch StringLen($aString[$i])
+			Case 1
+				$sOut &= $aString[$i]
+			Case 2
+				$sOut &= StringRight($aString[$i], 1)
+			Case 6
+				$sOut &= ChrW(Dec(StringRight($aString[$i], 4)))
+		EndSwitch
+	Next
+	
+	Opt('ExpandVarStrings', $iOld_Opt_EVS)
+	Opt('ExpandEnvStrings', $iOld_Opt_EES)
+	
+	Return $sOut
+EndFunc ;==>_Encoding_JavaUnicodeDecode
+;============================================ 
   
