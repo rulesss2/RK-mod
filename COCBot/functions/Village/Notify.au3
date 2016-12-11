@@ -468,6 +468,20 @@ Func NotifyRemoteControlProc()
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,21,"LASTRAID") & GetTranslated(620,22, " - send the last raid loot screenshot of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,23,"LASTRAIDTXT") & GetTranslated(620,24, " - send the last raid loot values of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,25,"SCREENSHOT") & GetTranslated(620,26, " - send a screenshot of") & " <" & $NotifyOrigin & ">"
+							;======addied kychera====== sendchat
+							$txtHelp &= '\n' & GetTranslated(620, 1, -1) & " <" & $NotifyOrigin & "> SENDCHAT <TEXT> - send TEXT in clan chat of <Village Name>"
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,21,"ACC <account list>") & GetTranslated(638,26, " - set new play list")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,22,"ADD <acc number>") & GetTranslated(638,27, " - add an account to play list")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,23,"REM <acc number>") & GetTranslated(638,28, " - remove an account from play list")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,24,"MAP <acc number>-<profile number>") & GetTranslated(638,29, " - set profile to an account. eg: BOT MAP 1-3")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,25,"MODE <mode ID>") & GetTranslated(638,30, " - set switching mode. Eg: BOT MODE 0")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,2,"PRO <profile number>") & GetTranslated(638,12, " - set new bot profiles")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,3,"GETORDER") & GetTranslated(638,13, " - get current CoC account and bot profile")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,4,"STOPSTART") & GetTranslated(638,14, " - stop then start bot again")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,5,"ALLPRO <all profile number>") & GetTranslated(638,15, " - set up profiles correspond to all exists accounts")
+							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " " & GetTranslated(638,10,"ATKP 1/0") & GetTranslated(638,20, " - 1-enable/0-disable attack plan")
+							$txtHelp &= '\n' & GetTranslated(620, 1, -1) & " <" & $NotifyOrigin & "> GETCHATS <STOP|NOW|INTERVAL> - select any of this three option to do")
+							;======>
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,27,"SCREENSHOTHD") & GetTranslated(620,28, " - send a screenshot in high resolution of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,29,"BUILDER") & GetTranslated(620,30, " - send a screenshot of builder status of") & " <" & $NotifyOrigin & ">"
 							$txtHelp &= '\n' & GetTranslated(620,1, -1) & " <" & $NotifyOrigin & "> " & GetTranslated(620,31,"SHIELD") & GetTranslated(620,32, " - send a screenshot of shield status of") & " <" & $NotifyOrigin & ">"
@@ -630,6 +644,98 @@ Func NotifyRemoteControlProc()
 									NotifyPushToPushBullet($NotifyOrigin & " | " & GetTranslated(620,97, "Command not recognized") & "\n" & GetTranslated(620,99, "Please push BOT HELP to obtain a complete command list."))
 									NotifyDeleteMessageFromPushBullet($iden[$x])
 								EndIf
+						;=================================== "Chat Bot" ===================================	addied kychera 12.2016===					
+						    Local $lsNewOrd
+						    If StringLeft($body[$x], 7) = "BOT ACC" Then		;Chalicucu order switch COC Account
+							   $lsNewOrd = ReorderAcc(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet("Reordered COC account: " & $lsNewOrd & " (" & AccGetStep() & ")")
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT PRO" Then		;Chalicucu order switch bot profile
+							   $lsNewOrd = ReorderCurPro(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet("Reordered bot profile: " & $lsNewOrd )
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 10) = "BOT ALLPRO" Then		;Chalicucu order switch bot profile
+							   $lsNewOrd = ReorderAllPro(StringMid($body[$x], 12))
+							   NotifyPushToPushBullet("Reordered bot profile for all acc: " & $lsNewOrd )
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT MAP" Then		;Chalicucu Mapping Account & Profile
+							   MapAccPro(StringMid($body[$x], 9))
+							  NotifyPushToPushBullet("Mapping success: " & StringMid($body[$x], 9) )
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf $body[$x] = "BOT GETORDER" Then		;Chalicucu inquiry acc order
+							   SetLog("Get order: [" & $body[$x] & "]", $COLOR_RED)
+							   NotifyPushToPushBullet("Ordered COC acc: " & AccGetOrder() & " (" & AccGetStep() _
+												   & ")\nCurrent:  " & $nCurCOCAcc _
+												   & "\nBot profile: " & ProGetOrderName() _
+												   & "\nSwitch Mode: " & $iSwitchMode & " - " & GUICtrlRead($cmbSwitchMode))
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT ADD" Then		;Chalicucu Add Account to Playing list
+							   $lsNewOrd = AddAcc(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet($lsNewOrd)
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 7) = "BOT REM" Then		;Chalicucu Remove Account from Playing list
+							   $lsNewOrd = RemAcc(StringMid($body[$x], 9))
+							   NotifyPushToPushBullet($lsNewOrd)
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x], 8) = "BOT MODE" Then		;Chalicucu Change Switching Mode
+							   $lsNewOrd = SwitchMode(StringMid($body[$x], 10))
+							   SetLog($lsNewOrd, $COLOR_RED)
+							   NotifyPushToPushBullet($lsNewOrd)
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf $body[$x] = "BOT STOPSTART" Then		;Chalicucu Stop then start again
+							   btnStop()
+							   btnStart()
+							   SetLog("Receive STOPSTART", $COLOR_RED)
+							  NotifyPushToPushBullet("Received STOPSTART")
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    ElseIf StringLeft($body[$x],8) = "BOT ATKP" Then	;Chalicucu Option to enable/disable Attack Plan
+							   $iChkAtkPln = (Number(StringMid($body[$x],10))=1)
+							   IniWrite($profile, "switchcocacc" , "CheckAtkPln" , Number(StringMid($body[$x],10)))
+							   If $iChkAtkPln Then
+								   GUICtrlSetState($chkAtkPln, $GUI_CHECKED)
+								   NotifyPushToPushBullet("Enabled attack scheduler!")
+							   Else
+								   GUICtrlSetState($chkAtkPln, $GUI_UNCHECKED)
+								   NotifyPushToPushBullet("Disabled attack scheduler!")
+							   EndIf
+							   NotifyDeleteMessageFromPushBullet($iden[$x])
+						    EndIf
+							If StringInStr($body[$x], StringUpper($NotifyOrigin) & " SENDCHAT ") Then
+								$FoundChatMessage = 1
+								$chatMessage = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($NotifyOrigin) & " SENDCHAT "))
+								$chatMessage = StringLower($chatMessage)
+								ChatbotPushbulletQueueChat($chatMessage)
+								NotifyPushToPushBullet($NotifyOrigin & " | Chat queued, will send on next idle")
+								NotifyDeleteMessageFromPushBullet($iden[$x])
+							ElseIf StringInStr($body[$x], StringUpper($NotifyOrigin) & " GETCHATS ") Then
+								$FoundChatMessage = 1
+								$Interval = StringRight($body[$x], StringLen($body[$x]) - StringLen("BOT " & StringUpper($NotifyOrigin) & " GETCHATS "))
+								If $Interval = "STOP" Then
+									ChatbotPushbulletStopChatRead()
+									NotifyPushToPushBullet($NotifyOrigin & " | Stopping interval sending")
+								ElseIf $Interval = "NOW" Then
+									ChatbotPushbulletQueueChatRead()
+									NotifyPushToPushBullet($NotifyOrigin & " | Command queued, will send clan chat image on next idle")
+								Else
+									If Number($Interval) <> 0 Then
+										ChatbotPushbulletIntervalChatRead(Number($Interval))
+										NotifyPushToPushBullet($NotifyOrigin & " | Command queued, will send clan chat image on interval")
+									Else
+										SetLog("Chatbot: incorrect command syntax, Example: BOT <VillageName> GETCHATS NOW|STOP|INTERVAL", $COLOR_RED)
+										NotifyPushToPushBullet($NotifyOrigint & " | Command not recognized" & "\n" & "Example: BOT <VillageName> GETCHATS NOW|STOP|INTERVAL")
+									EndIf
+								EndIf
+									NotifyDeleteMessageFromPushBullet($iden[$x])
+							Else
+								Local $lenstr = StringLen(GetTranslated(620, 1, -1) & " " & StringUpper($NotifyOrigin) & " " & "")
+								Local $teststr = StringLeft($body[$x], $lenstr)
+								If $teststr = (GetTranslated(620, 1, -1) & " " & StringUpper($NotifyOrigin) & " " & "") Then
+								SetLog("Pushbullet: received command syntax wrong, command ignored.", $COLOR_RED)
+									NotifyPushToPushBullet($NotifyOrigin & " | " & GetTranslated(620, 51, "Command not recognized") & "\n" & GetTranslated(620, 52, "Please push BOT HELP to obtain a complete command list."))
+									NotifyDeleteMessageFromPushBullet($iden[$x])
+								EndIf
+							EndIf
+                        ;============>							
 					EndSwitch
 					$body[$x] = ""
 					$iden[$x] = ""
@@ -675,7 +781,11 @@ Func NotifyRemoteControlProc()
 						$txtHelp &= "\n" & GetTranslated(620,43,"HIBERNATE") & GetTranslated(620,44, " - Hibernate host PC")
 						$txtHelp &= "\n" & GetTranslated(620,46,"SHUTDOWN") & GetTranslated(620,48, " - Shut down host PC")
 						$txtHelp &= "\n" & GetTranslated(620,50,"STANDBY") & GetTranslated(620,51, " - Standby host PC")
-
+                        ;==========addied kychera=====
+						$txtHelp &= "\n" & GetTranslated(18, 110, "SWITCHPROFILE <PROFILENAME> - Swap Profile Village and restart bot")
+						$txtHelp &= "\n" & GetTranslated(18, 111, "GETCHATS <INTERVAL|NOW|STOP> - to get the latest clan chat as an image")
+						$txtHelp &= "\n" & GetTranslated(18, 112, "SENDCHAT <chat message> - to send a chat to your clan")
+						;=============================>
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,100,"Request for Help") & "\n" & $txtHelp)
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,703,"Help has been sent"), $COLOR_GREEN)
 					Case GetTranslated(620,9,"RESTART"), '\UD83D\UDD01 ' & GetTranslated(620,9,"RESTART")
@@ -820,6 +930,34 @@ Func NotifyRemoteControlProc()
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,702,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,723,"Standby PC"), $COLOR_GREEN)
 						NotifyPushToTelegram(GetTranslated(620,52,"PC Standby sequence initiated"))
 						Shutdown(32)
+					;=================================== "Chat Bot" ===================================addied Kychera 12.2016
+					Case Else
+						If StringInStr($TGActionMSG, "SENDCHAT") Then
+							$FoundChatMessage = 1
+							$chatMessage = StringRight($TGActionMSG, StringLen($TGActionMSG) - StringLen("SENDCHAT "))
+							$chatMessage = StringLower($chatMessage)
+							ChatbotPushbulletQueueChat($chatMessage)
+							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 97, "Chat queued, will send on next idle"))
+						ElseIf StringInStr($TGActionMSG, "GETCHATS") Then
+							$FoundChatMessage = 1
+							$Interval = StringRight($TGActionMSG, StringLen($TGActionMSG) - StringLen("GETCHATS "))
+							If $Interval = "STOP" Then
+								ChatbotPushbulletStopChatRead()
+								NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 117, "Stopping interval sending"))
+							ElseIf $Interval = "NOW" Then
+								ChatbotPushbulletQueueChatRead()
+								NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 118, "Command queued, will send clan chat image on next idle"))
+							Else
+								If Number($Interval) <> 0 Then
+									ChatbotPushbulletIntervalChatRead(Number($Interval))
+									NotifyPushToTelegram($NotifyOrigint & " | " & GetTranslated(18, 119, "Command queued, will send clan chat image on interval"))
+								Else
+									SetLog("Telegram: received command syntax wrong, command ignored.", $COLOR_RED)
+									NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(18, 46, "Command not recognized") & "\n" & GetTranslated(18, 47, "Please push BOT HELP to obtain a complete command list."))
+								EndIf
+							EndIf
+						EndIf
+                    ;=========================>						
 				EndSwitch
 			EndIf
 		EndIf
