@@ -42,15 +42,15 @@ $sTxtNone = GetTranslated(603, 0, "None")
 
 $hGUI_ARMY_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
 
-$hGUI_ARMY_TAB_ITEM1 = GUICtrlCreateTabItem("Train ReVamp")
+$hGUI_ARMY_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(1010,1, "Train ReVamp"))
 Local $xStart = 0, $yStart = 0
 Local $x = 10
 Local $y = 25
 
 $26= GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
-	
 
-$grpTrainTroops = GUICtrlCreateGroup(GetTranslated(1000, 1, "Train Troops"), $x, $y, 418, 145)
+
+$grpTrainTroops = GUICtrlCreateGroup(GetTranslated(1010, 2, "Train Troops"), $x, $y, 418, 145)
 Local $x = 30, $y = 50
 
 ; Barbarians
@@ -230,7 +230,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 10
 Local $y = 170
-$grpBrewSpells = GUICtrlCreateGroup(GetTranslated(1000, 2, "Brew Spells"), $x, $y, 418, 75)
+$grpBrewSpells = GUICtrlCreateGroup(GetTranslated(1010, 3, "Brew Spells"), $x, $y, 418, 75)
 
 $x += 20
 $y += 5
@@ -317,12 +317,12 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Local $x = 10
 Local $y = 245
-$grpBrewSpells = GUICtrlCreateGroup(GetTranslated(1000, 3, "Train Options | Quick Train"), $x, $y, 418, 80)
+$grpBrewSpells = GUICtrlCreateGroup(GetTranslated(1010,4, "Train Options | Quick Train"), $x, $y, 418, 80)
 
 $hRadio_Army1 = GUICtrlCreateRadio("Army 1", $x + 135, $y + 20, 50, 15)
 GUICtrlSetState(-1, $GUI_DISABLE)
 GUICtrlSetState(-1, $GUI_CHECKED)
-$hChk_UseQTrain = GUICtrlCreateCheckbox("Use Quick Train > ", $x + 15, $y + 40, 115, 15)
+$hChk_UseQTrain = GUICtrlCreateCheckbox(GetTranslated(1010,5, "Use Quick Train > "), $x + 15, $y + 40, 115, 15)
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 GUICtrlSetOnEvent(-1, "chkUseQTrain")
 $hRadio_Army2 = GUICtrlCreateRadio("Army 2", $x + 135, $y + 40, 50, 15)
@@ -330,12 +330,12 @@ GUICtrlSetState(-1, $GUI_DISABLE)
 $hRadio_Army3 = GUICtrlCreateRadio("Army 3", $x + 135, $y + 60, 50, 15)
 GUICtrlSetState(-1, $GUI_DISABLE)
 
-; ========= Adding combo quick train - DEMEN
+; ========= Adding combo quick train -rulesss
 $hRadio_Army12 = GUICtrlCreateRadio("Army 1,2", $x + 190, $y + 20, 70, 15)
 GUICtrlSetState(-1, $GUI_DISABLE)
 $hRadio_Army123 = GUICtrlCreateRadio("Army 1,2,3", $x + 190, $y + 40, 70, 15)
 GUICtrlSetState(-1, $GUI_DISABLE)
-; ========= Adding combo quick train - DEMEN
+; ========= Adding combo quick train -rulesss
 
 $x += 280
 $y += 20
@@ -350,7 +350,7 @@ $lblFullTroop3 = GUICtrlCreateLabel("%", $x + 114, $y, -1, 17)
 
 $y += 20
 
-$lblTotalSpell = GUICtrlCreateLabel(GetTranslated(622, 2, "Spell Capacity") & " :", $x - 15, $y + 10, -1, -1, $SS_RIGHT)
+$lblTotalSpell = GUICtrlCreateLabel(GetTranslated(622, 2, "Spell Capacity") & " :", $x - 40, $y + 10, -1, -1, $SS_RIGHT)
 $txtTotalCountSpell = GUICtrlCreateCombo("", $x + 80, $y + 5, 35, 21, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 _GUICtrlSetTip(-1, GetTranslated(622, 3, "Enter the No. of Spells Capacity. Set to ZERO if you don't want any Spells"))
 GUICtrlSetBkColor(-1, $COLOR_MONEYGREEN) ;lime, moneygreen
@@ -369,7 +369,7 @@ $txtTotalCampForced = GUICtrlCreateInput("200", $x + 135, $y + 3, 30, 17, BitOR(
 GUICtrlSetOnEvent(-1, "SetComboTroopComp")
 GUICtrlSetLimit(-1, 3)
 
-$chkForceBrewBeforeAttack = GUICtrlCreateCheckbox("Force Brew Spells", $x + 175, $y, -1, -1)
+$chkForceBrewBeforeAttack = GUICtrlCreateCheckbox(GetTranslated(1010,17, "Force Brew Spells"), $x + 175, $y, -1, -1)
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 
 $caltotaltroops = GUICtrlCreateProgress($x, $y + 22, 420, 10)
@@ -377,7 +377,7 @@ $lbltotalprogress = GUICtrlCreateLabel("", $x, $y + 22, 420, 10)
 GUICtrlSetBkColor(-1, $COLOR_RED)
 GUICtrlSetState(-1, BitOR($GUI_DISABLE, $GUI_HIDE))
 $x += 40
-$lblTotalTroops = GUICtrlCreateLabel(GetTranslated(621, 15, "Total"), $x + 300, $y + 7, -1, -1, $SS_RIGHT)
+$lblTotalTroops = GUICtrlCreateLabel(GetTranslated(621, 15, "Total"), $x + 293, $y + 4, -1, -1, $SS_RIGHT)
 $lblTotalCount = GUICtrlCreateLabel(200, $x + 335, $y + 5, 30, 15, $SS_CENTER)
 _GUICtrlSetTip(-1, GetTranslated(621, 16, "The total Units of Troops should equal Total Army Camps."))
 GUICtrlSetBkColor(-1, $COLOR_MONEYGREEN) ;lime, moneygreen
