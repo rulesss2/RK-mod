@@ -2125,7 +2125,7 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	GUICtrlSetData($txtPBTimeForcedExit, $iValuePBTimeForcedExit)
 	chkSinglePBTForced()
 
-   ; =============================== 
+   ; ===============================
 	 $iBackGr = _GUICtrlComboBox_GetCurSel($BackGr)
 	 BackGr()
    ;================================
@@ -2558,6 +2558,7 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 		GUICtrlSetState($rbSXIAttacking, $GUI_CHECKED)
 		GUICtrlSetState($rbSXTraining, $GUI_UNCHECKED)
 	EndIf
+	GUICtrlSetData($txtMaxXPtoGain, $itxtMaxXPtoGain)
 	If $ichkSXBK = $HERO_KING Then
 		GUICtrlSetState($chkSXBK, $GUI_CHECKED)
 	Else
@@ -2778,7 +2779,7 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 
 	EndIf
 	chkPic()
-;========================================	
+;========================================
 
 	;==============================================================
 	; SmartZap - Added by DocOC team

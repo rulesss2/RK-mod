@@ -460,7 +460,7 @@ Global	$dirLoots = $sProfilePath & "\" & $sCurrProfile & "\Loots\"
 Global	$dirTemp = $sProfilePath & "\" & $sCurrProfile & "\Temp\"
 Global	$dirTempDebug = $sProfilePath & "\" & $sCurrProfile & "\Temp\Debug\"
 Global $ThemeConfig ;Theme
-Func SetupProfileFolder()    
+Func SetupProfileFolder()
     ;$ThemeConfig = IniRead(@ScriptDir & "\Themes\skin.ini", "skin", "skin", @ScriptDir & "\Themes\hex.msstyles")
 	$config = $sProfilePath & "\" & $sCurrProfile & "\config.ini"
 	$ChartPath = $sProfilePath & "\" & $sCurrProfile & "\Chart\ChartData" ; The Rest of the File name is completed in the called functions Example $chartpath &"Total.ini"
@@ -1789,7 +1789,7 @@ Global $RunModeChart = 0
 Global $iNameMyBot = ""
 
 ;SuperXP
-Global $ichkEnableSuperXP = 0, $irbSXTraining = 1, $ichkSXBK = 0, $ichkSXAQ = 0, $ichkSXGW = 0, $iStartXP = 0, $iCurrentXP = 0, $iGainedXP = 0, $iGainedXPHour = 0
+Global $ichkEnableSuperXP = 0, $irbSXTraining = 1, $ichkSXBK = 0, $ichkSXAQ = 0, $ichkSXGW = 0, $iStartXP = 0, $iCurrentXP = 0, $iGainedXP = 0, $iGainedXPHour = 0, $itxtMaxXPtoGain = 500
 ; Force brew Spells before attack
 Global $ichkForceBrewBeforeAttack = 0
 

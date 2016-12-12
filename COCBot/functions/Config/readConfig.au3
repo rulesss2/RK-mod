@@ -1057,6 +1057,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		; SuperXP
 		IniReadS($ichkEnableSuperXP, $config, "attack", "EnableSuperXP", "0")
 		IniReadS($irbSXTraining, $config, "attack", "SXTraining", "1")
+		IniReadS($itxtMaxXPtoGain, $config, "attack", "MaxXptoGain", "500")
 		IniReadS($ichkSXBK, $config, "attack", "SXBK", $HERO_NOHERO)
 		IniReadS($ichkSXAQ, $config, "attack", "SXAQ", $HERO_NOHERO)
 		IniReadS($ichkSXGW, $config, "attack", "SXGW", $HERO_NOHERO)

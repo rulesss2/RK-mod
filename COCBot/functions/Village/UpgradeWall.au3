@@ -24,6 +24,7 @@ Func UpgradeWall()
 			If SkipWallUpgrade() Then Return
 			If $iFreeBuilderCount > 0 Then
 				ClickP($aAway, 1, 0, "#0313") ; click away
+				VillageReport(true,false)
 				Local $MinWallGold = Number($iGoldCurrent - $WallCost) > Number($itxtWallMinGold) ; Check if enough Gold
 				Local $MinWallElixir = Number($iElixirCurrent - $WallCost) > Number($itxtWallMinElixir) ; Check if enough Elixir
 
@@ -239,7 +240,7 @@ Func SkipWallUpgrade() ; Dynamic Upgrades
 			Case 2 ; Using gold and elixir
 				Setlog("Laboratory needs Elixir to Upgrade :  " & $name, $COLOR_GREEN)
 				Setlog("Using Gold only for wall Upgrade  " & $name, $COLOR_GREEN)
-				
+
 				$iUseStorage = 0
 		EndSwitch
 	EndIf
