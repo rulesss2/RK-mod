@@ -50,14 +50,14 @@ Func MainSuperXPHandler()
 		SetLog("Cannot get in Main Screen!! Exiting SuperXP", $COLOR_RED)
 		Return False
 	EndIf
-	$canGainXP = ((IIf($ichkSXBK = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXBK) Or IIf($ichkSXAQ = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXAQ) Or IIf($ichkSXGW = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXGW)) And $iHeroAvailable <> $HERO_NOHERO And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True))
+	$canGainXP = ((IIf($ichkSXBK = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXBK) Or IIf($ichkSXAQ = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXAQ) Or IIf($ichkSXGW = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXGW)) And $iHeroAvailable <> $HERO_NOHERO And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True) And Number($iGainedXP) < Number($itxtMaxXPtoGain))
 
 	If $DebugSX = 1 Then SetLog("$iHeroAvailable = " & $iHeroAvailable)
 	If $DebugSX = 1 Then SetLog("BK: " & $ichkSXBK & ", AQ: " & $ichkSXAQ & ", GW: " & $ichkSXGW)
 	If $DebugSX = 1 Then SetLog("$canGainXP = " & $canGainXP & @CRLF & "1: " & String(IIf($ichkSXBK = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXBK)) & ", 2: " & _
 			String(IIf($ichkSXAQ = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXAQ)) & ", 3: " & _
 			String(IIf($ichkSXGW = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXGW)) & ", 4: " & ($iHeroAvailable <> $HERO_NOHERO) & _
-			", 5: " & String(IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True)))
+			", 5: " & String(IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True)) & ", 6: " & String(Number($iGainedXP) < Number($itxtMaxXPtoGain)))
 
 	If $canGainXP = False Then Return
 
@@ -74,7 +74,8 @@ Func MainSuperXPHandler()
 			Return False
 		EndIf
 		If $iGainedXP >= $itxtMaxXPtoGain Then
- 			SetLog("You have Max XP to Gain GoblinXP", $COLOR_DEBUG)
+ 			$canGainXP = False
+			SetLog("You have Max XP to Gain GoblinXP", $COLOR_DEBUG)
  			If $DebugSX = 1 Then SetLog("$iGainedXP = " & $iGainedXP & "|$itxtMaxXPtoGain = " & $itxtMaxXPtoGain, $COLOR_DEBUG)
  			$ichkEnableSuperXP = 0
  			GUICtrlSetState($chkEnableSuperXP, $GUI_UNCHECKED)
@@ -98,13 +99,13 @@ Func MainSuperXPHandler()
 		If $canGainXP = False Then ExitLoop
 		DonateCC(True)
 		If $irbSXTraining = 1 Then CheckForFullArmy()
-		$canGainXP = ((IIf($ichkSXBK = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXBK) Or IIf($ichkSXAQ = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXAQ) Or IIf($ichkSXGW = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXGW)) And $iHeroAvailable <> $HERO_NOHERO And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True) And $ichkEnableSuperXP = 1)
+		$canGainXP = ((IIf($ichkSXBK = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXBK) Or IIf($ichkSXAQ = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXAQ) Or IIf($ichkSXGW = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXGW)) And $iHeroAvailable <> $HERO_NOHERO And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True) And $ichkEnableSuperXP = 1)$canGainXP = ((IIf($ichkSXBK = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXBK) Or IIf($ichkSXAQ = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXAQ) Or IIf($ichkSXGW = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXGW)) And $iHeroAvailable <> $HERO_NOHERO And IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True) And $ichkEnableSuperXP = 1 And Number($iGainedXP) < Number($itxtMaxXPtoGain))
 		If $DebugSX = 1 Then SetLog("$iHeroAvailable = " & $iHeroAvailable)
 		If $DebugSX = 1 Then SetLog("BK: " & $ichkSXBK & ", AQ: " & $ichkSXAQ & ", GW: " & $ichkSXGW)
 		If $DebugSX = 1 Then SetLog("While|$canGainXP = " & $canGainXP & @CRLF & "1: " & String(IIf($ichkSXBK = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXBK)) & ", 2: " & _
 				String(IIf($ichkSXAQ = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXAQ)) & ", 3: " & _
 				String(IIf($ichkSXGW = $HERO_NOHERO, False, $iHeroAvailable >= $ichkSXGW)) & ", 4: " & ($iHeroAvailable <> $HERO_NOHERO) & _
-				", 5: " & String(IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True)) & ", 6: " & String($ichkEnableSuperXP = 1))
+				", 5: " & String(IIf($irbSXTraining = 1, $IsFullArmywithHeroesAndSpells = False, True)) & ", 6: " & String($ichkEnableSuperXP = 1) & ", 7: " & String(Number($iGainedXP) < Number($itxtMaxXPtoGain)))
 	WEnd
 EndFunc   ;==>MainSuperXPHandler
 
