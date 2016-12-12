@@ -211,7 +211,7 @@ Func TestTrainRevamp()
 			Local $TimeRemainTroops = getRemainTrainTimer(756, 169)
 			Local $ResultTroopsHour, $ResultTroopsMinutes, $ResultTroopsSeconds
 			Local $aRemainTrainTroopTimer = 0
-			$aTimeTrain[0] = 0
+			$aTimeTrain[1] = 0
 
 			If $TimeRemainTroops <> "" Then
 				;SetLog("Debug Remain Troops | " & $TimeRemainTroops, $COLOR_GREEN)
@@ -228,7 +228,7 @@ Func TestTrainRevamp()
 					$aRemainTrainTroopTimer = Ceiling($ResultTroopsSeconds / 60)
 				EndIf
 
-				$aTimeTrain[0] = $aRemainTrainTroopTimer
+				$aTimeTrain[1] = $aRemainTrainTroopTimer
 				Setlog("Remain Troops Time: " & $aRemainTrainTroopTimer & " min", $COLOR_GREEN)
 			EndIf
 			CheckExistentArmy("Troops")
@@ -469,28 +469,28 @@ Func TestTrainRevampOldStyle()
 			TrainUsingWhatToTrain($rWhatToTrain, True)
 		Else
 			OpenTrainTabNumber($ArmyTAB)
-			Local $TimeRemainTroops = getRemainTrainTimer(500, 315)
+			Local $TimeRemainSpells = getRemainTrainTimer(500, 315)
 			Local $ResultTroopsHour, $ResultTroopsMinutes, $ResultTroopsSeconds
-			Local $aRemainTrainTroopTimer = 0
+			Local $aRemainTrainSpellsTimer = 0
 			$aTimeTrain[0] = 0
 
-			If $TimeRemainTroops <> "" Then
+			If $TimeRemainSpells <> "" Then
 				;SetLog("Debug Remain Troops | " & $TimeRemainTroops, $COLOR_GREEN)
-				If StringInStr($TimeRemainTroops, "h") > 1 Then
-					$ResultTroopsHour = StringSplit($TimeRemainTroops, "h", $STR_NOCOUNT)
+				If StringInStr($TimeRemainSpells, "h") > 1 Then
+					$ResultTroopsHour = StringSplit($TimeRemainSpells, "h", $STR_NOCOUNT)
 					; $ResultTroopsHour[0] will be the Hour and the $ResultTroopsHour[1] will be the Minutes with the "m" at end
 					$ResultTroopsMinutes = StringTrimRight($ResultTroopsHour[1], 1) ; removing the "m"
-					$aRemainTrainTroopTimer = (Number($ResultTroopsHour[0]) * 60) + Number($ResultTroopsMinutes)
-				ElseIf StringInStr($TimeRemainTroops, "m") > 1 Then
-					$ResultTroopsMinutes = StringSplit($TimeRemainTroops, "m", $STR_NOCOUNT)
-					$aRemainTrainTroopTimer = $ResultTroopsMinutes[0] + Ceiling($ResultTroopsMinutes[1] / 60)
+					$aRemainTrainSpellsTimer = (Number($ResultTroopsHour[0]) * 60) + Number($ResultTroopsMinutes)
+				ElseIf StringInStr($TimeRemainSpells, "m") > 1 Then
+					$ResultTroopsMinutes = StringSplit($TimeRemainSpells, "m", $STR_NOCOUNT)
+					$aRemainTrainSpellsTimer = $ResultTroopsMinutes[0] + Ceiling($ResultTroopsMinutes[1] / 60)
 				Else
-					$ResultTroopsSeconds = StringTrimRight($TimeRemainTroops, 1) ; removing the "s"
-					$aRemainTrainTroopTimer = Ceiling($ResultTroopsSeconds / 60)
+					$ResultTroopsSeconds = StringTrimRight($TimeRemainSpells, 1) ; removing the "s"
+					$aRemainTrainSpellsTimer = Ceiling($ResultTroopsSeconds / 60)
 				EndIf
 
-				$aTimeTrain[0] = $aRemainTrainTroopTimer
-				Setlog("Remaining Spells Brew Time: " & $aRemainTrainTroopTimer & " min", $COLOR_GREEN)
+				$aTimeTrain[1] = $aRemainTrainSpellsTimer
+				Setlog("Remaining Spells Brew Time: " & $aRemainTrainSpellsTimer & " min", $COLOR_GREEN)
 			EndIf
 		EndIf
 	EndIf
