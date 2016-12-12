@@ -15,7 +15,7 @@
 ;$hGUI_BotOptions = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 5, 25, BitOR($WS_CHILD, $WS_TABSTOP), -1, $hGUI_BOT)
 $1 = GUICtrlCreatePic(@ScriptDir & '\Images\1.jpg', 2, 23, 442, 367, $WS_CLIPCHILDREN)
 ;GUISwitch($hGUI_BotOptions)
-
+Global $iBackGr
 Local $x = 25, $y = 45
 $grpLanguages = GUICtrlCreateGroup(GetTranslated(636,83, "GUI Language"), $x - 20, $y - 19, 210, 47)
 	$y -=2
@@ -133,9 +133,16 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 		GUICtrlCreateLabel(GetTranslated(636,107, "Enable Backgroung"), $x + 17, $y + 2, -1, -1)
 		;$y += 25
 		$x += 120
-	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		;_GUICtrlSetTip(-1, "Fish" & @CRLF & "Ship")
-		GUICtrlSetData(-1, GetTranslated(1010,100, "Key1|Key2|Key3|Key4|Key5|Key6|Key7|Key8"), "Key1")
+	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))		
+		GUICtrlSetData(-1, GetTranslated(1000,101, "Key1") & "|" & _
+		                   GetTranslated(1000,102, "Key2") & "|" & _
+						   GetTranslated(1000,103, "Key3") & "|" & _
+						   GetTranslated(1000,104, "Key4") & "|" & _
+						   GetTranslated(1000,105, "Key5") & "|" & _
+						   GetTranslated(1000,106, "Key6") & "|" & _
+						   GetTranslated(1000,107, "Key7") & "|" & _
+						   GetTranslated(1000,108, "Key8"), _
+						   GetTranslated(1000,101, "Key1"))
 		GUICtrlSetOnEvent(-1,"BackGr")
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
