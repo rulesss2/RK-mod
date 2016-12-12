@@ -28,6 +28,13 @@ Global $canGainXP = False
 Func MainSuperXPHandler()
 	If $ichkEnableSuperXP = 0 Then Return
 	If $irbSXTraining = 1 And $IsFullArmywithHeroesAndSpells = True Then Return ; If Gain while Training Enabled but Army is Full Then Return
+    If $iGainedXP >= $itxtMaxXPtoGain Then
+  		SetLog("You have Max XP to Gain GoblinXP", $COLOR_DEBUG)
+ 		If $DebugSX = 1 Then SetLog("$iGainedXP = " & $iGainedXP & "|$itxtMaxXPtoGain = " & $itxtMaxXPtoGain, $COLOR_DEBUG)
+ 		$ichkEnableSuperXP = 0
+ 		GUICtrlSetState($chkEnableSuperXP, $GUI_UNCHECKED)
+ 		Return ; If Gain XP More Than Max XP to Gain Then Exit/Return
+ 	EndIf
 
 	If WaitForMain() = False Then
 		SetLog("Cannot get in Main Screen!! Exiting SuperXP", $COLOR_RED)
@@ -66,6 +73,13 @@ Func MainSuperXPHandler()
 			SetLog("Cannot get in Main Screen!! Exiting SuperXP", $COLOR_RED)
 			Return False
 		EndIf
+		If $iGainedXP >= $itxtMaxXPtoGain Then
+ 			SetLog("You have Max XP to Gain GoblinXP", $COLOR_DEBUG)
+ 			If $DebugSX = 1 Then SetLog("$iGainedXP = " & $iGainedXP & "|$itxtMaxXPtoGain = " & $itxtMaxXPtoGain, $COLOR_DEBUG)
+ 			$ichkEnableSuperXP = 0
+ 			GUICtrlSetState($chkEnableSuperXP, $GUI_UNCHECKED)
+ 			ExitLoop ; If Gain XP More Than Max XP to Gain Then Exit/Return
+ 		EndIf
 		SetLog("Attacking to Goblin Picnic - GoblinXP", $COLOR_BLUE)
 		If $RunState = False Then Return
 		If OpenGoblinPicnic() = False Then

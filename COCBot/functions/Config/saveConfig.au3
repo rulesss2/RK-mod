@@ -1109,6 +1109,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		$irbSXTraining = 2
 	EndIf
+	IniWrite($config, "attack", "MaxXptoGain", GUICtrlRead($txtMaxXPtoGain))
 	If GUICtrlRead($chkSXBK) = $GUI_CHECKED Then
 		$ichkSXBK = $HERO_KING
 	Else

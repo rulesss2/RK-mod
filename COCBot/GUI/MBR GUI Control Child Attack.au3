@@ -39,12 +39,14 @@ Func chkEnableSuperXP()
 		GUICtrlSetState($chkSXBK, $GUI_ENABLE)
 		GUICtrlSetState($chkSXAQ, $GUI_ENABLE)
 		GUICtrlSetState($chkSXGW, $GUI_ENABLE)
+		GUICtrlSetState($txtMaxXPtoGain, $GUI_ENABLE)
 	Else
 		GUICtrlSetState($rbSXTraining, $GUI_DISABLE)
 		GUICtrlSetState($rbSXIAttacking, $GUI_DISABLE)
 		GUICtrlSetState($chkSXBK, $GUI_DISABLE)
 		GUICtrlSetState($chkSXAQ, $GUI_DISABLE)
 		GUICtrlSetState($chkSXGW, $GUI_DISABLE)
+		GUICtrlSetState($txtMaxXPtoGain, $GUI_DISABLE)
 	EndIf
 EndFunc   ;==>chkEnableSuperXP
 
