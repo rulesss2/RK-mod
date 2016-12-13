@@ -137,7 +137,7 @@ Func TestTrainRevamp()
 	If $aGetSpellsSize[0] <> "" And $aGetSpellsSize[1] <> "" Then Setlog("Spells :" & $aGetSpellsSize[0] & "/" & $aGetSpellsSize[1], $COLOR_GREEN) ; coc-ms
 	If $aGetCastleSize[0] <> "" And $aGetCastleSize[1] <> "" Then Setlog("Clan Castle : " & $aGetCastleSize[0] & "/" & $aGetCastleSize[1], $COLOR_GREEN) ; coc-ms
 
-	If IsWaitforHeroesActive() Or $iChkTrophyRange = 1 Or $ichkEnableSuperXP = 1 Then
+	If IsWaitforHeroesActive() Or ($iChkTrophyRange = 1 and $iChkTrophyHeroes = 1) Then
 		;CheckExistentArmy("Heroes")
 		getArmyHeroCount()
 	Else
