@@ -150,11 +150,29 @@ Func TestTrainRevamp()
 		$IsFullArmywithHeroesAndSpells = False
 	EndIf
 
+	Local $text = ""
+	If $fullarmy = False then
+		$text &= " Troops,"
+	EndIf
+	If $checkSpells = False then
+		$text &= " Spells,"
+	EndIf
+	If $bFullArmyHero = False then
+		$text &= " Heroes,"
+	EndIf
+	If $fullcastlespells = False then
+		$text &= " CC Spell,"
+	EndIf
+	If $fullcastletroops = False then
+		$text &= " CC Troops,"
+	EndIf
+
 	If $IsFullArmywithHeroesAndSpells = True Then
-		If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then PushMsg("CampFull")
-		Setlog("Chief, are your troops ready for battle? Yes, they are!", $COLOR_GREEN)
+		If (($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1) Then PushMsg("CampFull")
+		Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 	Else
-		Setlog("Chief, are your troops ready for battle? Sorry, Not yet!", $COLOR_ACTION)
+		Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
+	    If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 	EndIf
 
 	If UBound($aGetArmySize) > 1 Then
@@ -375,11 +393,29 @@ Func TestTrainRevampOldStyle()
 		$IsFullArmywithHeroesAndSpells = False
 	EndIf
 
+	Local $text = ""
+	If $fullarmy = False then
+		$text &= " Troops,"
+	EndIf
+	If $checkSpells = False then
+		$text &= " Spells,"
+	EndIf
+	If $bFullArmyHero = False then
+		$text &= " Heroes,"
+	EndIf
+	If $fullcastlespells = False then
+		$text &= " CC Spell,"
+	EndIf
+	If $fullcastletroops = False then
+		$text &= " CC Troops,"
+	EndIf
+
 	If $IsFullArmywithHeroesAndSpells = True Then
-		If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then PushMsg("CampFull")
-		Setlog("Chief, are your troops ready for battle? Yes, they are!", $COLOR_GREEN)
+		If (($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1) Then PushMsg("CampFull")
+		Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 	Else
-		Setlog("Chief, are your troops ready for battle? Sorry, Not yet!", $COLOR_ACTION)
+		Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
+		If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 	EndIf
 
 	Local $rWhatToTrain = WhatToTrain(True) ; r in First means Result! Result of What To Train Function
