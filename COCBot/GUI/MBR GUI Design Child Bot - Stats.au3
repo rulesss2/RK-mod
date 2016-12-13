@@ -27,7 +27,7 @@ GUISwitch($hGUI_STATS)
 ;~ Stats Tab
 ;~ -------------------------------------------------------------
 $hGUI_STATS_TAB = GUICtrlCreateTab(0, 0, $_GUI_MAIN_WIDTH - 30, $_GUI_MAIN_HEIGHT - 255 - 30, BitOR($TCS_MULTILINE, $TCS_RIGHTJUSTIFY))
-Local $x = 375, $y = 0
+Local $x = 382, $y = 0
 $btnResetStats = GUICtrlCreateButton(GetTranslated(632,31, "Reset Stats"), $x, $y, 60, 20)
 GUICtrlSetOnEvent(-1, "btnResetStats")
 GUICtrlSetState(-1, $GUI_DISABLE)
@@ -75,8 +75,8 @@ $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
 	$x = $xStart + 342
 	$y = $yStart - 14
 	;Display League in Stats ==>
-	;$grpLeague = GUICtrlCreateGroup(GetTranslated(632,106, "League"), $x - 5, $y - 15, 70, 90)	
-	
+	;$grpLeague = GUICtrlCreateGroup(GetTranslated(632,106, "League"), $x - 5, $y - 15, 70, 90)
+
 			$y += 1
             $txtLeague = GUICtrlCreateGroup(GetTranslated(632,106, "League"), $x - 5, $y - 1, -1, -1, $SS_CENTER)
 		GUICtrlSetFont(-1, 9, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
@@ -124,13 +124,13 @@ $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
 			$sPngLegend = @ScriptDir & "\images\League\Legend.png"
 			$LegendLeague  = GUICtrlCreatePic("", $x - 2, $y - 2 + 15, 54, 54)
 			_SetImage($LegendLeague, $sPngLegend)
-			GUICtrlSetState(-1,$GUI_HIDE)			
-			
+			GUICtrlSetState(-1,$GUI_HIDE)
+
 		;	-->Display League Level in Stats
 		$lblLeague = GUICtrlCreateLabel("", $x + 43, $y + 52, 17, 17, $SS_CENTER)
 		GUICtrlSetFont($lblLeague, 11, $FW_BOLD, Default, "Arial", $CLEARTYPE_QUALITY)
 		GUICtrlSetColor($lblLeague, $COLOR_BLACK)
-	    GUICtrlCreateGroup("", -99, -99, 1, 1)	
+	    GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 	$x = $xStart + 3
 	$y = $yStart + 100
@@ -407,7 +407,7 @@ $hGUI_STATS_TAB_ITEM1 = GUICtrlCreateTabItem(GetTranslated(600,38,"Gain"))
 
 ;TAB Misc
 $hGUI_STATS_TAB_ITEM2 = GUICtrlCreateTabItem(GetTranslated(600,39,"Misc"))
-$33 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)	
+$33 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
 Local $xStart = 25, $yStart = 45
 	$x = $xStart + 3
 	$y = $yStart + 20
@@ -665,7 +665,7 @@ Local $xStart = 25, $yStart = 45
 
 ;TAB Attacks
 $hGUI_STATS_TAB_ITEM3 = GUICtrlCreateTabItem(GetTranslated(600,40,"Attacks"))
-$34 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)	
+$34 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
 Local $xStart = 25, $yStart = 45
 	$x = $xStart + 3
 	$y = $yStart + 20
