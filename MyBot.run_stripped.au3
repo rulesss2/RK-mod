@@ -65405,24 +65405,24 @@ If IsQueueEmpty($BrewSpellsTAB) = True Then
 TrainUsingWhatToTrain($rWhatToTrain, True)
 Else
 OpenTrainTabNumber($ArmyTAB)
-Local $TimeRemainTroops = getRemainTrainTimer(500, 315)
+Local $TimeRemainSpells = getRemainTrainTimer(500, 315)
 Local $ResultTroopsHour, $ResultTroopsMinutes, $ResultTroopsSeconds
-Local $aRemainTrainTroopTimer = 0
-$aTimeTrain[0] = 0
-If $TimeRemainTroops <> "" Then
-If StringInStr($TimeRemainTroops, "h") > 1 Then
-$ResultTroopsHour = StringSplit($TimeRemainTroops, "h", $STR_NOCOUNT)
+Local $aRemainTrainSpellsTimer = 0
+$aTimeTrain[1] = 0
+If $TimeRemainSpells <> "" Then
+If StringInStr($TimeRemainSpells, "h") > 1 Then
+$ResultTroopsHour = StringSplit($TimeRemainSpells, "h", $STR_NOCOUNT)
 $ResultTroopsMinutes = StringTrimRight($ResultTroopsHour[1], 1)
-$aRemainTrainTroopTimer = (Number($ResultTroopsHour[0]) * 60) + Number($ResultTroopsMinutes)
-ElseIf StringInStr($TimeRemainTroops, "m") > 1 Then
-$ResultTroopsMinutes = StringSplit($TimeRemainTroops, "m", $STR_NOCOUNT)
-$aRemainTrainTroopTimer = $ResultTroopsMinutes[0] + Ceiling($ResultTroopsMinutes[1] / 60)
+$aRemainTrainSpellsTimer = (Number($ResultTroopsHour[0]) * 60) + Number($ResultTroopsMinutes)
+ElseIf StringInStr($TimeRemainSpells, "m") > 1 Then
+$ResultTroopsMinutes = StringSplit($TimeRemainSpells, "m", $STR_NOCOUNT)
+$aRemainTrainSpellsTimer = $ResultTroopsMinutes[0] + Ceiling($ResultTroopsMinutes[1] / 60)
 Else
-$ResultTroopsSeconds = StringTrimRight($TimeRemainTroops, 1)
-$aRemainTrainTroopTimer = Ceiling($ResultTroopsSeconds / 60)
+$ResultTroopsSeconds = StringTrimRight($TimeRemainSpells, 1)
+$aRemainTrainSpellsTimer = Ceiling($ResultTroopsSeconds / 60)
 EndIf
-$aTimeTrain[0] = $aRemainTrainTroopTimer
-Setlog("Remaining Spells Brew Time: " & $aRemainTrainTroopTimer & " min", $COLOR_GREEN)
+$aTimeTrain[1] = $aRemainTrainSpellsTimer
+Setlog("Remaining Spells Brew Time: " & $aRemainTrainSpellsTimer & " min", $COLOR_GREEN)
 EndIf
 EndIf
 EndIf
@@ -69669,9 +69669,10 @@ Return True
 EndIf
 Return False
 EndFunc
-Func SearchZoomOut($directory = @ScriptDir & "\imgxml\zoomout", $bCenterVillage = $CenterVillage[0])
+Func SearchZoomOut($directory = @ScriptDir & "\imgxml\zoomout", $bCenterVillage = $CenterVillage[0], $attack = False)
 Local $x, $y, $x1, $y1, $right, $bottom
 Local $aZoomoutImgPos[2] = [191, 498]
+Local $_ZoomOutPosition[2] = [40,533]
 Local $iAdditional = 50
 $x1 = $aZoomoutImgPos[0] - $iAdditional
 $y1 = $aZoomoutImgPos[1] - $iAdditional
@@ -69699,7 +69700,8 @@ $x -= 54
 $y -= 89
 If $bCenterVillage = True And ($x <> 0 Or $y <> 0) And ($x <> $CenterVillage[1] Or $y <> $CenterVillage[2]) Then
 SetDebugLog("Center Village by: " & $x & ", " & $y)
-ClickDrag($aZoomoutImgPos[0], $aZoomoutImgPos[1], $aZoomoutImgPos[0] - $x, $aZoomoutImgPos[1] - $y)
+If $attack = False then ClickDrag($aZoomoutImgPos[0], $aZoomoutImgPos[1], $aZoomoutImgPos[0] - $x, $aZoomoutImgPos[1] - $y)
+If $attack = True then ClickDrag($_ZoomOutPosition[0], $_ZoomOutPosition[1], $_ZoomOutPosition[0] - $x, $_ZoomOutPosition[1] - $y)
 If _Sleep(250) Then Return $aResult
 $aResult = SearchZoomOut($directory, False)
 $CenterVillage[1] = $VILLAGE_OFFSET_X
@@ -78761,7 +78763,7 @@ GetResources(False)
 If $Restart = True Then Return
 If Mod(($iSkipped + 1), 100) = 0 Then
 If _Sleep($iDelayRespond) Then Return
-If CheckZoomOut() = False Then Return
+If CheckZoomOut(true) = False Then Return
 EndIf
 SuspendAndroid()
 Local $noMatchTxt = ""
@@ -78973,6 +78975,7 @@ ElseIf FileExists(@WindowsDir & "\media\Windows Exclamation.wav") Then
 SoundPlay(@WindowsDir & "\media\Windows Exclamation.wav", 1)
 EndIf
 EndIf
+If CheckZoomOut(true) = False Then Return
 SetLog(_PadStringCenter(" Search Complete ", 50, "="), $COLOR_BLUE)
 PushMsg("MatchFound")
 $Is_ClientSyncError = False
@@ -79038,16 +79041,16 @@ SetLog("Aim: [G]:" & StringFormat("%7s", $iAimGold[$x]) & " [E]:" & StringFormat
 EndIf
 EndIf
 EndFunc
-Func CheckZoomOut()
-_CaptureRegion(0, 0, $DEFAULT_WIDTH, 2)
-If _GetPixelColor(1, 1) <> Hex(0x000000, 6) And _GetPixelColor(850, 1) <> Hex(0x000000, 6) Then
-SetLog("Not Zoomed Out! Exiting to MainScreen...", $COLOR_RED)
+Func CheckZoomOut($Attack = False)
+Local $aVillageResult = SearchZoomOut(@ScriptDir & "\imgxml\zoomout", $CenterVillage[0], $Attack)
+If StringInStr($aVillageResult[0], "zoomou") = 0 Then
+SetLog("Not Zoomed Out! Exiting to MainScreen...", $COLOR_ERROR)
 checkMainScreen()
 $Restart = True
+$Is_ClientSyncError = True
 Return False
-Else
-Return True
 EndIf
+Return True
 EndFunc
 Func SearchTownHallLoc()
 Local $addtiles = 0

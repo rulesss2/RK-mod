@@ -78,11 +78,12 @@ Func DonateCC($Check = False)
 
 	;<---- opens clan tab and verbose in log
 	ClickP($aAway, 1, 0, "#0167") ;Click Away
-	Setlog("Checking for Donate Requests in Clan Chat", $COLOR_BLUE)
 
 	ForceCaptureRegion()
 	If _CheckPixel($aChatTab, $bCapturePixel) = False Then ClickP($aOpenChat, 1, 0, "#0168") ; Clicks chat tab
 	If _Sleep($iDelayDonateCC4) Then Return
+
+	Setlog("Checking for Donate Requests in Clan Chat", $COLOR_BLUE)
 
 	Local $icount = 0
 	While 1
