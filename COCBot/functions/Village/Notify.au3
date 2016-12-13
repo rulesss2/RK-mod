@@ -397,13 +397,13 @@ Func NotifyActivateKeyboardOnTelegram($TGMsg)
 	'\ud83d\udcc8 ' & GetTranslated(620,804,"Stats") & '","' & _
 	'\ud83d\udcaa ' & GetTranslated(620,805,"Troops") & '","' & _
 	'\u2753 ' & GetTranslated(620,806,"Help") & '"],["' & _
-	'\u25aa ' & GetTranslated(620,807,"Stop") & '","' & _
-	'\ud83d\udd00 ' & GetTranslated(620,808,"Pause") & '","' & _
+	'\u23F9 ' & GetTranslated(620,807,"Stop") & '","' & _
+	'\u23F8 ' & GetTranslated(620,808,"Pause") & '","' & _
 	'\u25b6 ' & GetTranslated(620,809,"Resume") & '","' & _
 	'\ud83d\udd01 ' & GetTranslated(620,810,"Restart") & '"],["' & _
 	'\ud83d\udccb ' & GetTranslated(620,811,"Log") & '","' & _
-	'\ud83c\udf04 ' & GetTranslated(620,812,"Lastraid") & '","' & _
-	'\ud83d\udcc4 ' & GetTranslated(620,813,"LastRaidTxt") & '"],["' & _
+	'\uD83D\uDCB0 ' & GetTranslated(620,812,"Lastraid") & '","' & _
+	'\uD83D\uDCB0 ' & GetTranslated(620,813,"LastRaidTxt") & '"],["' & _
 	'\u2705 ' & GetTranslated(620,814,"Attack On") & '","' & _
 	'\u274C ' & GetTranslated(620,815,"Attack Off") & '"],["' & _
 	'\ud83d\udca4 ' & GetTranslated(620,816,"Hibernate") & '","' & _
@@ -754,7 +754,7 @@ Func NotifyRemoteControlProc()
 		Local $TGActionMSG = StringUpper(StringStripWS($TGLastMessage, $STR_STRIPLEADING + $STR_STRIPTRAILING + $STR_STRIPSPACES)) ;upercase & remove space laset message
 		If ($TGActionMSG = "/START" Or $TGActionMSG = "KEYB") And $TGLastRemote <> $TGLast_UID Then
 			$TGLastRemote = $TGLast_UID
-			NotifyActivateKeyboardOnTelegram("\ud83d\udc19 Telegram " & $NotifyVersion & " by RK MOD Team")
+			NotifyActivateKeyboardOnTelegram("\uD83D\uDE0E \u270C Telegram " & $NotifyVersion & " by RK MOD Team")
 		Else
 			If $TGLastRemote <> $TGLast_UID Then
 				$TGLastRemote = $TGLast_UID
@@ -793,7 +793,7 @@ Func NotifyRemoteControlProc()
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,165,"Request to Restart") & "...\n" & GetTranslated(620,143,"Your bot and Emulator are now restarting..."))
 						SaveConfig()
 						_Restart()
-					Case GetTranslated(620,11,"STOP"), '\U25AA ' & GetTranslated(620,11,"Stop")
+					Case GetTranslated(620,11,"STOP"), '\u23F9 ' & GetTranslated(620,11,"Stop")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,706, "Your request has been received. Bot is now stopped"), $COLOR_GREEN)
 						If $Runstate = True Then
 							 NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,125,"Request to Stop...") & "\n" & GetTranslated(620,126,"Your bot is now stopping..."))
@@ -801,7 +801,7 @@ Func NotifyRemoteControlProc()
 						Else
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,125,"Request to Stop...") & "\n" & GetTranslated(620,127,"Your bot is currently stopped, no action was taken"))
 						EndIf
-					Case GetTranslated(620,13,"PAUSE"), '\UD83D\UDD00 ' & GetTranslated(620,13,"PAUSE")
+					Case GetTranslated(620,13,"PAUSE"), '\u23F8 ' & GetTranslated(620,13,"PAUSE")
 						If $TPaused = False And $Runstate = True Then
 							If ( _ColorCheck(_GetPixelColor($NextBtn[0], $NextBtn[1], True), Hex($NextBtn[2], 6), $NextBtn[3])) = False And IsAttackPage() Then
 								SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,707, "Unable to pause during attack"), $COLOR_RED)
@@ -821,7 +821,7 @@ Func NotifyRemoteControlProc()
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,708,"Your bot is currently paused, no action was taken"), $COLOR_GREEN)
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,166,"Request to Pause") & "\n" & GetTranslated(620,150,"Your bot is currently paused, no action was taken"))
 						EndIf
-					Case GetTranslated(620,15,"RESUME"), '\U25B6 ' & GetTranslated(620,15,"RESUME")
+					Case GetTranslated(620,15,"RESUME"), '\u25b6 ' & GetTranslated(620,15,"RESUME")
 						If $TPaused = True And $Runstate = True Then
 							TogglePauseImpl("Push")
 						Else
@@ -855,7 +855,7 @@ Func NotifyRemoteControlProc()
 					Case GetTranslated(620,19,"LOG"), '\UD83D\UDCCB ' & GetTranslated(620,19,"LOG")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,711,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,712,"Log is now sent"), $COLOR_GREEN)
 						NotifyPushFileToTelegram($sLogFName, "logs", "text\/plain; charset=utf-8", $NotifyOrigin & " | Current Log " & "\n")
-					Case GetTranslated(620,21,"LASTRAID"), '\UD83C\UDF04 ' & GetTranslated(620,21,"LASTRAID")
+					Case GetTranslated(620,21,"LASTRAID"), '\uD83D\uDCB0' & GetTranslated(620,21,"LASTRAID")
 						 If $LootFileName <> "" Then
 							NotifyPushFileToTelegram($LootFileName, GetTranslated(620,120, "Loots"), "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,152,"Last Raid") & "\n" & $LootFileName)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,713,"Push Last Raid Snapshot..."), $COLOR_GREEN)
@@ -865,7 +865,7 @@ Func NotifyRemoteControlProc()
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,714,"Your request has been received. Last Raid txt sent"), $COLOR_GREEN)
 							NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,142,"Last Raid txt") & "\n" & "[" & GetTranslated(620,35, "G") & "]: " & _NumberFormat($iGoldLast) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirLast) & " [D]: " & _NumberFormat($iDarkLast) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyLast)
 						EndIf
-					Case GetTranslated(620,23,"LASTRAIDTXT"), '\UD83D\UDCC4 ' & GetTranslated(620,23,"LASTRAIDTXT")
+					Case GetTranslated(620,23,"LASTRAIDTXT"), '\uD83D\uDCB0 ' & GetTranslated(620,23,"LASTRAIDTXT")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,714,"Your request has been received. Last Raid txt sent"), $COLOR_GREEN)
 						NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,142,"Last Raid txt") & "\n" & "[" & GetTranslated(620,35, "G") & "]: " & _NumberFormat($iGoldLast) & " [" & GetTranslated(620,110, "E") & "]: " & _NumberFormat($iElixirLast) & " [D]: " & _NumberFormat($iDarkLast) & " [" & GetTranslated(620,112, "T") & "]: " & $iTrophyLast)
 					Case GetTranslated(620,25,"SCREENSHOT")
