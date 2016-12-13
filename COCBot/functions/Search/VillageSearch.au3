@@ -104,7 +104,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 		If Mod(($iSkipped + 1), 100) = 0 Then
 			If _Sleep($iDelayRespond) Then Return
-			If CheckZoomOut() = False Then Return
+			If CheckZoomOut(true) = False Then Return
 		EndIf
 
 		SuspendAndroid()
@@ -387,29 +387,10 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		EndIf
 	EndIf
 
+	; Just a check for ZoomOut , if exist any problem will not attack ... (parameter = true ) with the new dragclick safe position on attack village!
+	If CheckZoomOut(true) = False Then Return
 	SetLog(_PadStringCenter(" Search Complete ", 50, "="), $COLOR_BLUE)
 	PushMsg("MatchFound")
-
-
-;~ 	; --- TH Detection Check Once Conditions ---
-;~ 	; if TownHall no previous detect and we need to TH snipe before attack DB or LB, locate TH and determine if it is placed inside or outside the village; log result in main log
-;~ 	If  $iChkMeetTH[$iMatchMode] = 0 And $iChkMeetTHO[$iMatchMode] = 0 And  ($iMatchMode = $DB and $THSnipeBeforeDBEnable = 1 ) or ($iMatchMode = $LB and $THSnipeBeforeDBEnable = 1 ) Then
-;~ 		$searchTH = checkTownHallADV2()
-
-;~ 		If $searchTH = "-" Then ; retry with autoit search after $iDelayVillageSearch5 seconds
-;~ 			If _Sleep($iDelayVillageSearch5) Then Return
-;~ 			If $debugsetlog = 1 Then SetLog("2nd attempt to detect the TownHall!", $COLOR_DEBUG) ;Debug
-;~ 			$searchTH = THSearch()
-;~ 		EndIf
-
-;~ 		If SearchTownHallLoc() = False And $searchTH <> "-" Then
-;~ 			SetLog("Checking Townhall location: TH is inside, skip Attack TH")
-;~ 		ElseIf $searchTH <> "-" Then
-;~ 			SetLog("Checking Townhall location: TH is outside, Attacking Townhall!")
-;~ 		Else
-;~ 			SetLog("Checking Townhall location: Could not locate TH, skipping attack TH...")
-;~ 		EndIf
-;~ 	EndIf
 
 	$Is_ClientSyncError = False
 
