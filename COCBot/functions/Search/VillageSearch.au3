@@ -65,6 +65,8 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 
 	If $Is_SearchLimit = True Then $Is_SearchLimit = False
 
+	If CheckZoomOut(true) = False Then Return
+
 	#comments-start
 		;mikemikemikecoc - Wait For Spells
 		For $i = 0 To $iModeCount - 2 ;check if DB and LB are active or not
@@ -102,10 +104,10 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 		GetResources(False) ;Reads Resource Values
 		If $Restart = True Then Return ; exit func
 
-		If Mod(($iSkipped + 1), 100) = 0 Then
-			If _Sleep($iDelayRespond) Then Return
-			If CheckZoomOut(true) = False Then Return
-		EndIf
+;~ 		If Mod(($iSkipped + 1), 100) = 0 Then
+;~ 			If _Sleep($iDelayRespond) Then Return
+;~ 			If CheckZoomOut(true) = False Then Return
+;~ 		EndIf
 
 		SuspendAndroid()
 
@@ -388,7 +390,7 @@ Func VillageSearch() ;Control for searching a village that meets conditions
 	EndIf
 
 	; Just a check for ZoomOut , if exist any problem will not attack ... (parameter = true ) with the new dragclick safe position on attack village!
-	If CheckZoomOut(true) = False Then Return
+;~ 	If CheckZoomOut(true) = False Then Return
 	SetLog(_PadStringCenter(" Search Complete ", 50, "="), $COLOR_BLUE)
 	PushMsg("MatchFound")
 
