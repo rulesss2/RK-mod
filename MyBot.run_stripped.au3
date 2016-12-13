@@ -65139,11 +65139,28 @@ $IsFullArmywithHeroesAndSpells = True
 Else
 $IsFullArmywithHeroesAndSpells = False
 EndIf
+Local $text = ""
+If $fullarmy = False then
+$text &= " Troops,"
+EndIf
+If $checkSpells = False then
+$text &= " Spells,"
+EndIf
+If $bFullArmyHero = False then
+$text &= " Heroes,"
+EndIf
+If $fullcastlespells = False then
+$text &= " CC Spell,"
+EndIf
+If $fullcastletroops = False then
+$text &= " CC Troops,"
+EndIf
 If $IsFullArmywithHeroesAndSpells = True Then
-If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then PushMsg("CampFull")
-Setlog("Chief, are your troops ready for battle? Yes, they are!", $COLOR_GREEN)
+If (($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1) Then PushMsg("CampFull")
+Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 Else
-Setlog("Chief, are your troops ready for battle? Sorry, Not yet!", $COLOR_ACTION)
+Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
+If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 EndIf
 If UBound($aGetArmySize) > 1 Then
 If $Runstate = False Then Return
@@ -65298,11 +65315,28 @@ $FirstStart = False
 Else
 $IsFullArmywithHeroesAndSpells = False
 EndIf
+Local $text = ""
+If $fullarmy = False then
+$text &= " Troops,"
+EndIf
+If $checkSpells = False then
+$text &= " Spells,"
+EndIf
+If $bFullArmyHero = False then
+$text &= " Heroes,"
+EndIf
+If $fullcastlespells = False then
+$text &= " CC Spell,"
+EndIf
+If $fullcastletroops = False then
+$text &= " CC Troops,"
+EndIf
 If $IsFullArmywithHeroesAndSpells = True Then
-If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then PushMsg("CampFull")
-Setlog("Chief, are your troops ready for battle? Yes, they are!", $COLOR_GREEN)
+If (($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1) Then PushMsg("CampFull")
+Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 Else
-Setlog("Chief, are your troops ready for battle? Sorry, Not yet!", $COLOR_ACTION)
+Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
+If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 EndIf
 Local $rWhatToTrain = WhatToTrain(True)
 Local $rRemoveExtraTroops = RemoveExtraTroops($rWhatToTrain)
@@ -83635,6 +83669,7 @@ VillageReport(True, True)
 If SkipWallUpgrade() Then Return
 If $iFreeBuilderCount > 0 Then
 ClickP($aAway, 1, 0, "#0313")
+VillageReport(true,false)
 Local $MinWallGold = Number($iGoldCurrent - $WallCost) > Number($itxtWallMinGold)
 Local $MinWallElixir = Number($iElixirCurrent - $WallCost) > Number($itxtWallMinElixir)
 Switch $iUseStorage
