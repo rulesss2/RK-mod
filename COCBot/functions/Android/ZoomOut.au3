@@ -373,11 +373,14 @@ Func AndroidOnlyZoomOut() ;Zooms out
 EndFunc   ;==>AndroidOnlyZoomOut
 
 
-Func SearchZoomOut($directory = @ScriptDir & "\imgxml\zoomout", $bCenterVillage = $CenterVillage[0])
+Func SearchZoomOut($directory = @ScriptDir & "\imgxml\zoomout", $bCenterVillage = $CenterVillage[0], $attack = False)
 	; Setup arrays, including default return values for $return
 	Local $x, $y, $x1, $y1, $right, $bottom
 
 	Local $aZoomoutImgPos[2] = [191, 498]
+
+	; New Safe position for Scouted village ( on Water )
+	Local $_ZoomOutPosition[2] = [40,533]
 
 	Local $iAdditional = 50
 	$x1 = $aZoomoutImgPos[0] - $iAdditional
@@ -414,7 +417,8 @@ Func SearchZoomOut($directory = @ScriptDir & "\imgxml\zoomout", $bCenterVillage 
 				$y -= 89
 				If $bCenterVillage = True And ($x <> 0 Or $y <> 0) And ($x <> $CenterVillage[1] Or $y <> $CenterVillage[2]) Then
 					SetDebugLog("Center Village by: " & $x & ", " & $y)
-					ClickDrag($aZoomoutImgPos[0], $aZoomoutImgPos[1], $aZoomoutImgPos[0] - $x, $aZoomoutImgPos[1] - $y)
+					If $attack = False then ClickDrag($aZoomoutImgPos[0], $aZoomoutImgPos[1], $aZoomoutImgPos[0] - $x, $aZoomoutImgPos[1] - $y)
+					If $attack = True then ClickDrag($_ZoomOutPosition[0], $_ZoomOutPosition[1], $_ZoomOutPosition[0] - $x, $_ZoomOutPosition[1] - $y)
 					If _Sleep(250) Then Return $aResult
 					$aResult = SearchZoomOut($directory, False)
 					$CenterVillage[1] = $VILLAGE_OFFSET_X

@@ -201,10 +201,6 @@ SetLog(GetTranslated(500, 8, "Android Emulator Configuration: %s", $sAndroidInfo
 
 CheckDisplay() ; verify display size and DPI (Dots Per Inch) setting
 
-;LoadTHImage() ; Load TH images
-LoadElixirImage() ; Load Elixir images
-LoadElixirImage75Percent(); Load Elixir images full at 75%
-LoadElixirImage50Percent(); Load Elixir images full at 50%
 LoadAmountOfResourcesImages()
 
 ;~ InitializeVariables();initialize variables used in extra windows

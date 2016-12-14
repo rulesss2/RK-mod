@@ -137,7 +137,7 @@ Func TestTrainRevamp()
 	If $aGetSpellsSize[0] <> "" And $aGetSpellsSize[1] <> "" Then Setlog("Spells :" & $aGetSpellsSize[0] & "/" & $aGetSpellsSize[1], $COLOR_GREEN) ; coc-ms
 	If $aGetCastleSize[0] <> "" And $aGetCastleSize[1] <> "" Then Setlog("Clan Castle : " & $aGetCastleSize[0] & "/" & $aGetCastleSize[1], $COLOR_GREEN) ; coc-ms
 
-	If IsWaitforHeroesActive() Or $iChkTrophyRange = 1 Or $ichkEnableSuperXP = 1 Then
+	If IsWaitforHeroesActive() Or ($iChkTrophyRange = 1 and $iChkTrophyHeroes = 1) Then
 		;CheckExistentArmy("Heroes")
 		getArmyHeroCount()
 	Else
@@ -150,11 +150,29 @@ Func TestTrainRevamp()
 		$IsFullArmywithHeroesAndSpells = False
 	EndIf
 
+	Local $text = ""
+	If $fullarmy = False then
+		$text &= " Troops,"
+	EndIf
+	If $checkSpells = False then
+		$text &= " Spells,"
+	EndIf
+	If $bFullArmyHero = False then
+		$text &= " Heroes,"
+	EndIf
+	If $fullcastlespells = False then
+		$text &= " CC Spell,"
+	EndIf
+	If $fullcastletroops = False then
+		$text &= " CC Troops,"
+	EndIf
+
 	If $IsFullArmywithHeroesAndSpells = True Then
-		If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then PushMsg("CampFull")
-		Setlog("Chief, are your troops ready for battle? Yes, they are!", $COLOR_GREEN)
+		If (($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1) Then PushMsg("CampFull")
+		Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 	Else
-		Setlog("Chief, are your troops ready for battle? Sorry, Not yet!", $COLOR_ACTION)
+		Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
+	    If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 	EndIf
 
 	If UBound($aGetArmySize) > 1 Then
@@ -375,11 +393,29 @@ Func TestTrainRevampOldStyle()
 		$IsFullArmywithHeroesAndSpells = False
 	EndIf
 
+	Local $text = ""
+	If $fullarmy = False then
+		$text &= " Troops,"
+	EndIf
+	If $checkSpells = False then
+		$text &= " Spells,"
+	EndIf
+	If $bFullArmyHero = False then
+		$text &= " Heroes,"
+	EndIf
+	If $fullcastlespells = False then
+		$text &= " CC Spell,"
+	EndIf
+	If $fullcastletroops = False then
+		$text &= " CC Troops,"
+	EndIf
+
 	If $IsFullArmywithHeroesAndSpells = True Then
-		If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then PushMsg("CampFull")
-		Setlog("Chief, are your troops ready for battle? Yes, they are!", $COLOR_GREEN)
+		If (($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1) Then PushMsg("CampFull")
+		Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 	Else
-		Setlog("Chief, are your troops ready for battle? Sorry, Not yet!", $COLOR_ACTION)
+		Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
+		If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 	EndIf
 
 	Local $rWhatToTrain = WhatToTrain(True) ; r in First means Result! Result of What To Train Function
@@ -2464,83 +2500,29 @@ Func AttackBarCheck()
 
 EndFunc   ;==>AttackBarCheck
 
-Func SlotAttack($x)
+Func SlotAttack($PosX)
 
-	;Local $CheckSlot11 = _ColorCheck(_GetPixelColor(834, 588 + $bottomOffsetY, True), Hex(0x040c0a, 6), 15)
-	Local $CheckSlot11 = _ColorCheck(_GetPixelColor(17, 580 + $bottomOffsetY, True), Hex(0x07202A, 6), 10)
+	Local $CheckSlot11 = _ColorCheck(_GetPixelColor(17, 580 + $bottomOffsetY, True), Hex(0x07202A, 6), 15)
 
 	If $debugSetlog = 1 Then
-		Setlog(" Slot 0  _ColorCheck 0x040505 at (17," & 580 + $bottomOffsetY & "): " & $CheckSlot11, $COLOR_DEBUG) ;Debug
+		Setlog(" Slot 0  _ColorCheck 0x07202A at (17," & 580 + $bottomOffsetY & "): " & $CheckSlot11, $COLOR_DEBUG) ;Debug
 		Local $SlotPixelColorTemp = _GetPixelColor(17, 580 + $bottomOffsetY, $bCapturePixel)
 		Setlog(" Slot 0  _GetPixelColo(17," & 580 + $bottomOffsetY & "): " & $SlotPixelColorTemp, $COLOR_DEBUG) ;Debug
 	EndIf
 
 	Local $Slottemp[2] = [0, 0]
-	If $Runstate = False Then Return
+	If $RunState = False Then Return
 
-	Switch $x
-		Case $x < 98
-			$Slottemp[0] = 35
-			$Slottemp[1] = 0
+	for $i = 0 to 12
+		If $PosX >= 25 + ($i * 73)  and $PosX < 98 + ($i * 73) then
+			$Slottemp[0] = 35 + ($i * 73)
+			$Slottemp[1] = $i
 			If $CheckSlot11 = False Then $Slottemp[0] -= 13
+			If $debugSetlog = 1 Then Setlog("Slot: " & $i & " | $x > " & 25 + ($i * 73) & " and $x < " & 98 + ($i * 73) & @CRLF)
+			If $debugSetlog = 1 Then Setlog("Slot: " & $i & " | $PosX: " & $PosX & " |  $Slottemp[0]: " & $Slottemp[0] & " | $Slottemp[1]: " & $Slottemp[1] & @CRLF)
 			Return $Slottemp
-		Case $x > 98 And $x < 171
-			$Slottemp[0] = 111
-			$Slottemp[1] = 1
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 171 And $x < 244
-			$Slottemp[0] = 184
-			$Slottemp[1] = 2
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 244 And $x < 308
-			$Slottemp[0] = 255
-			$Slottemp[1] = 3
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 308 And $x < 393
-			$Slottemp[0] = 330
-			$Slottemp[1] = 4
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 393 And $x < 465
-			$Slottemp[0] = 403
-			$Slottemp[1] = 5
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 465 And $x < 538
-			$Slottemp[0] = 477
-			$Slottemp[1] = 6
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 538 And $x < 611
-			$Slottemp[0] = 551
-			$Slottemp[1] = 7
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 611 And $x < 683
-			$Slottemp[0] = 625
-			$Slottemp[1] = 8
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 683 And $x < 753
-			$Slottemp[0] = 694
-			$Slottemp[1] = 9
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 753 And $x < 823
-			$Slottemp[0] = 764
-			$Slottemp[1] = 10
-			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			Return $Slottemp
-		Case $x > 823 And $x < 860
-			$Slottemp[0] = 830
-			$Slottemp[1] = 11
-			Return $Slottemp
-		Case Else
-			Return $Slottemp
-	EndSwitch
+		EndIF
+	next
 
 EndFunc   ;==>SlotAttack
 

@@ -13,14 +13,15 @@
 ; Example .......: No
 ; ===============================================================================================================================
 ;
-Func CheckZoomOut()
-	_CaptureRegion(0, 0, $DEFAULT_WIDTH, 2)
-	If _GetPixelColor(1, 1) <> Hex(0x000000, 6) And _GetPixelColor(850, 1) <> Hex(0x000000, 6) Then
-		SetLog("Not Zoomed Out! Exiting to MainScreen...", $COLOR_RED)
+Func CheckZoomOut($Attack = False)
+	Local $aVillageResult = SearchZoomOut(@ScriptDir & "\imgxml\zoomout", $CenterVillage[0], $Attack)
+	If StringInStr($aVillageResult[0], "zoomou") = 0 Then
+		; not zoomed out, Return
+		SetLog("Not Zoomed Out! Exiting to MainScreen...", $COLOR_ERROR)
 		checkMainScreen() ;exit battle screen
-		$Restart = True
+		$Restart = True ; Restart Attack
+		$Is_ClientSyncError = True ; quick restart
 		Return False
-	Else
-		Return True
 	EndIf
+	Return True
 EndFunc   ;==>CheckZoomOut
