@@ -1750,11 +1750,6 @@ Global $sMinTimeCloseATK = 15
 
 ;Left-Right Click
 Global $iGUIEnabled = True
-
-;DocOc Version
-Global $lastModversion = "" ;latest version from GIT
-Global $lastModmessage = "" ;message for last version
-Global $oldModversmessage = "" ;warning message for old bot
 ; ================================================== BOT HUMANIZATION PART ================================================== ;
 
 Global $MinimumPriority, $MaxActionsNumber, $ActionToDo

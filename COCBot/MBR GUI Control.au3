@@ -377,9 +377,6 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			btnAttackNowTS()
 			;Case $idMENU_DONATE_SUPPORT
 			;	ShellExecute("https://mybot.run/forums/index.php?/donate/make-donation/")
-		Case $CheckVersionConfig
-			CheckVersionHTML()
-			CheckModVersion()
 		Case $btnNotifyDeleteMessages
 			If $RunState Then
 				btnDeletePBMessages() ; call with flag when bot is running to execute on _sleep() idle
