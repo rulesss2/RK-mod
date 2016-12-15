@@ -611,7 +611,7 @@ Global $TGLastMessage = ""
 Global $grpNotify, $chkNotifyPBEnabled,$chkNotifyRemote,$chkNotifyDeleteAllPBPushes,$btnNotifyDeleteMessages,$chkNotifyDeleteOldPBPushes,$cmbNotifyPushHours
 Global $txbNotifyPBToken, $txbNotifyTGToken, $txbNotifyOrigin, $chkNotifyAlertMatchFound, $chkNotifyAlertLastRaidIMG, $chkNotifyAlertLastRaidTXT, $chkNotifyAlertCampFull
 Global $chkNotifyAlertUpgradeWall, $chkNotifyAlertOutOfSync, $chkNotifyAlertTakeBreak, $chkNotifyAlertBuilderIdle, $chkNotifyAlertVillageStats, $chkNotifyAlertLastAttack
-Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep 
+Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep
 ;--------------------------------------------------------------------------
 ; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
 ;-------------------------------------------------------------------------
@@ -891,6 +891,9 @@ Global $IsCCAutoLocated[4] = [0, 0, 33, 2] ;A Flag to know if CC Auto Located! [
 Global $LastDonateBtn1 = -1, $LastDonateBtn2 = -1
 Global $DonatePixel
 Global $iClanLevel
+Global $bDonate = -1	; -1 means not set yet
+Global $bDonateTrain = -1	; -1 means not set yet
+
 
 Global $sTxtRequest = ""
 Global $ichkDonateAllBarbarians, $ichkDonateBarbarians, $sTxtDonateBarbarians, $sTxtBlacklistBarbarians, $aDonBarbarians, $aBlkBarbarians
