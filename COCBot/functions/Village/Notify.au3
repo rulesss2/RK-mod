@@ -1193,6 +1193,16 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 			If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertCampFull = 1 Then
 				NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,128, "Your Army Camps are now Full"))
 			EndIf
+;===============Modified kychera===========	
+		Case "SleepBot"		
+		    If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertBOTSleep = 1 Then
+		      NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,736, "Bot Sleep") & "..." & "\n" & $sWaitTime)	
+		    EndIf
+		Case "WakeUpBot"		
+		    If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyAlertBOTSleep = 1 Then
+		      NotifyPushToBoth($NotifyOrigin & " | " & GetTranslated(620,737, "Wake Up Bot"))	
+		    EndIf
+;==========================================	
 		Case "Misc"
 			NotifyPushToBoth($Message)
 	EndSwitch

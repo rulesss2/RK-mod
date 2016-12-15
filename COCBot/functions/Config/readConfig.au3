@@ -681,6 +681,7 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 		IniReadS($NotifyAlertMaintenance, $config, "notify", "AlertPBMaintenance", "0")
 		IniReadS($NotifyAlertBAN, $config, "notify", "AlertPBBAN", "0")
 		IniReadS($NotifyAlertBOTUpdate, $config, "notify", "AlertPBUpdate", "0")
+		IniReadS($NotifyAlertBOTSleep, $config, "notify", "AlertPBSleep", "0")
 
 		$ichkPic = IniRead($config, "background", "chkPic", "1")
         ;Schedule

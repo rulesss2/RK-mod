@@ -580,7 +580,7 @@ Global $NotifyAlertMaintenance = 1
 Global $NotifyAlertBAN = 1
 Global $NotifyAlertBOTUpdate = 1
 Global $iReportIdleBuilder = 0
-
+Global $NotifyAlertBOTSleep = 0
 
 ;Schedule---------------------------------------------------------------
 Global $NotifyScheduleHoursEnable
@@ -611,7 +611,7 @@ Global $TGLastMessage = ""
 Global $grpNotify, $chkNotifyPBEnabled,$chkNotifyRemote,$chkNotifyDeleteAllPBPushes,$btnNotifyDeleteMessages,$chkNotifyDeleteOldPBPushes,$cmbNotifyPushHours
 Global $txbNotifyPBToken, $txbNotifyTGToken, $txbNotifyOrigin, $chkNotifyAlertMatchFound, $chkNotifyAlertLastRaidIMG, $chkNotifyAlertLastRaidTXT, $chkNotifyAlertCampFull
 Global $chkNotifyAlertUpgradeWall, $chkNotifyAlertOutOfSync, $chkNotifyAlertTakeBreak, $chkNotifyAlertBuilderIdle, $chkNotifyAlertVillageStats, $chkNotifyAlertLastAttack
-Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate
+Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep 
 ;--------------------------------------------------------------------------
 ; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
 ;-------------------------------------------------------------------------

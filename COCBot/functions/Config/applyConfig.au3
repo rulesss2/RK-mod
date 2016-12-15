@@ -1798,7 +1798,14 @@ Func applyConfig($bRedrawAtExit = True) ;Applies the data from config to the con
 	ElseIf $NotifyAlertBOTUpdate = 0 Then
 		GUICtrlSetState($chkNotifyBOTUpdate, $GUI_UNCHECKED)
 	EndIf
+;==========Modified Kychera==
+If $NotifyAlertBOTSleep = 1 Then
+		GUICtrlSetState($chkNotifyBOTSleep, $GUI_CHECKED)
+	ElseIf $NotifyAlertBOTSleep = 0 Then
+		GUICtrlSetState($chkNotifyBOTSleep, $GUI_UNCHECKED)
+	EndIf
 
+;============================
 	GUICtrlSetData($txbNotifyPBToken, $NotifyPBToken)
 	GUICtrlSetData($txbNotifyTGToken, $NotifyTGToken)
 	GUICtrlSetData($txbNotifyOrigin, $NotifyOrigin)

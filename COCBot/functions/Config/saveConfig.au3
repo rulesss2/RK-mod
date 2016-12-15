@@ -435,7 +435,13 @@ Func saveConfig() ;Saves the controls settings to the config
 	Else
 		$NotifyAlertBOTUpdate = 0
 	EndIf
-
+;================Modified kychera=============
+If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
+		$NotifyAlertBOTSleep = 1
+	Else
+		$NotifyAlertBOTSleep = 0
+	EndIf
+;=============================================
 	If GUICtrlRead($chkNotifyDeleteOldPBPushes) = $GUI_CHECKED Then
 		$NotifyDeletePushesOlderThan = 1
 	Else
@@ -2348,6 +2354,7 @@ Func saveConfig() ;Saves the controls settings to the config
 	IniWriteS($config, "notify", "AlertPBMaintenance", $NotifyAlertMaintenance)
 	IniWriteS($config, "notify", "AlertPBBAN", $NotifyAlertBAN)
 	IniWriteS($config, "notify", "AlertPBUpdate", $NotifyAlertBOTUpdate)
+	IniWriteS($config, "notify", "AlertPBSleep", $NotifyAlertBOTSleep)
 
 	;Schedule
 	If GUICtrlRead($chkNotifyWeekDays) = $GUI_CHECKED Then
