@@ -13,14 +13,6 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-Func PushBulletRemoteControl()
-	If ($NotifyPBEnabled = 1 Or $NotifyTGEnabled = 1) And $NotifyRemoteEnable = 1 Then NotifyRemoteControl()
-EndFunc   ;==>PushBulletRemoteControl
-
-Func PushBulletDeleteOldPushes()
-	If $NotifyPBEnabled = 1 And $NotifyDeletePushesOlderThan = 1 Then _DeleteOldPushes() ; check every 30 min if must delete old pushbullet messages, increase delay time for anti ban pushbullet
-EndFunc   ;==>PushBulletDeleteOldPushes
-
 Func chkPBTGenabled()
 	If GUICtrlRead($chkNotifyPBEnabled) = $GUI_CHECKED Then
 		$NotifyPBEnabled = 1
@@ -44,7 +36,7 @@ Func chkPBTGenabled()
 		GUICtrlSetState($btnNotifyDeleteMessages, $GUI_ENABLE)
 		GUICtrlSetState($cmbNotifyPushHours, $GUI_DISABLE)
 	EndIf
-	
+
 	If GUICtrlRead($chkTGenabled) = $GUI_CHECKED Then
 		$NotifyTGEnabled = 1
 		GUICtrlSetState($txbNotifyTGToken, $GUI_ENABLE)
@@ -112,13 +104,13 @@ EndFunc   ;==>btnDeletePBMessages
 
 Func NotifyHelp()
 	If FileExists(@ScriptDir & "\Help\NotifyHelp_" & $sLanguage & ".mht") Then
-		Run("cmd.exe /c start """" Help\NotifyHelp_" & $sLanguage & ".mht", $WorkingDir, @SW_HIDE)
+		ShellExecute(@ScriptDir & "\Help\NotifyHelp_" & $sLanguage & ".mht")
 	ElseIf FileExists(@ScriptDir & "\Help\NotifyHelp_English.mht") Then
-		Run("cmd.exe /c start """" Help\NotifyHelp_English.mht", $WorkingDir, @SW_HIDE)
+		ShellExecute(@ScriptDir & "\Help\NotifyHelp_English.mht")
 	EndIf
 EndFunc	;==>NotifyHelp
 
-  
+
 ; Restart Bot
 Func _Restart()
 	SetDebugLog("Restart " & $sBotTitle)
@@ -210,7 +202,7 @@ Func chkNotifyWeekDays()
 			GUICtrlSetState($i, $GUI_DISABLE)
 		Next
 	EndIf
- 
+
 EndFunc	;==>chkNotifyWeekDays
 
 
