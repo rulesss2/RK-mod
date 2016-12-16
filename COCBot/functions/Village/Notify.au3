@@ -875,10 +875,10 @@ Func NotifyRemoteControlProc($OnlyPB)
 							  $txtStats &= $iNbrOfWallsUppedGold & "/ [" & GetTranslated(620,110, "E") & "]: " & $iNbrOfWallsUppedElixir & "\n\n" & GetTranslated(620,116,"Attacked") & ": "
 							  $txtStats &= $iAttackedCount & "\n" & GetTranslated(620,115,"Skipped") & ": " & $iSkippedVillageCount
 						NotifyPushToTelegram($NotifyOrigin & $txtStats)
-					Case GetTranslated(620,19,"LOG"), '\UD83D\UDCCB ' & GetTranslated(620,19,"LOG")
+					Case GetTranslated(620,19,"LOG"), '\ud83d\udccb ' & GetTranslated(620,19,"LOG")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,711,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,712,"Log is now sent"), $COLOR_GREEN)
 						NotifyPushFileToTelegram($sLogFName, "logs", "text\/plain; charset=utf-8", $NotifyOrigin & " | Current Log " & "\n")
-					Case GetTranslated(620,21,"LASTRAID"), '\uD83D\uDCB0' & GetTranslated(620,21,"LASTRAID")
+					Case GetTranslated(620,21,"LASTRAID"), '\uD83D\uDCB0 ' & GetTranslated(620,21,"LASTRAID")
 						 If $LootFileName <> "" Then
 							NotifyPushFileToTelegram($LootFileName, GetTranslated(620,120, "Loots"), "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,152,"Last Raid") & "\n" & $LootFileName)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,713,"Push Last Raid Snapshot..."), $COLOR_GREEN)
