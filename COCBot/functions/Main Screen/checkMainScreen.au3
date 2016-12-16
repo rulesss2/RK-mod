@@ -85,22 +85,53 @@ Func checkMainScreen($Check = True, $CheckZoomout = True) ;Checks if in main scr
 	NotifyPendingActions()
 EndFunc   ;==>checkMainScreen
 
-Func IsWaitingForConnection()
-	If _ColorCheck(_GetPixelColor(430, 365, True), Hex(0xEF7800, 6), 20) Then
-		If _ColorCheck(_GetPixelColor(427, 362, True), Hex(0xFF8800, 6), 20) Then
-			If _ColorCheck(_GetPixelColor(432, 369, True), Hex(0xB75C00, 6), 20) Then
-				If _ColorCheck(_GetPixelColor(429, 365, True), Hex(0xEF7800, 6), 20) Then
-					If _ColorCheck(_GetPixelColor(426, 362, True), Hex(0x7F4000, 6), 20) Then
-						If _ColorCheck(_GetPixelColor(433, 369, True), Hex(0x3F2000, 6), 20) Then
-							SetLog("CoC is Waiting for Connection...", $COLOR_RED)
-							CloseCoC(True)
-							Return True
+Func IsWaitingForConnection($LoopCount = 1, $LoopDelay = 200)
+	ForceCaptureRegion()
+
+	Local $IsWaiting = False
+	For $i = 1 To $LoopCount
+		_CaptureRegion()
+		If _ColorCheck(_GetPixelColor(430, 365, $bNoCapturePixel), Hex(0xEF7800, 6), 20) Then
+			If _ColorCheck(_GetPixelColor(427, 362, $bNoCapturePixel), Hex(0xFF8800, 6), 20) Then
+				If _ColorCheck(_GetPixelColor(432, 369, $bNoCapturePixel), Hex(0xB75C00, 6), 20) Then
+					If _ColorCheck(_GetPixelColor(429, 365, $bNoCapturePixel), Hex(0xEF7800, 6), 20) Then
+						If _ColorCheck(_GetPixelColor(426, 362, $bNoCapturePixel), Hex(0x7F4000, 6), 20) Then
+							If _ColorCheck(_GetPixelColor(433, 369, $bNoCapturePixel), Hex(0x3F2000, 6), 20) Then
+								$IsWaiting = True
+							Else
+								$IsWaiting = False
+								ExitLoop
+							EndIf
+						Else
+							$IsWaiting = False
+							ExitLoop
 						EndIf
+					Else
+						$IsWaiting = False
+						ExitLoop
 					EndIf
+				Else
+					$IsWaiting = False
+					ExitLoop
 				EndIf
+			Else
+				$IsWaiting = False
+				ExitLoop
 			EndIf
+		Else
+			$IsWaiting = False
+			ExitLoop
 		EndIf
+		If $i < $LoopCount Then
+			If _Sleep($LoopDelay) Then Return
+		EndIf
+	Next
+	If $IsWaiting = True Then
+		SetLog("CoC is Waiting for Connection...", $COLOR_RED)
+		CloseCoC(True)
+		Return True
+	Else
+		Return False
 	EndIf
-	Return False
 EndFunc   ;==>IsWaitingForConnection
 

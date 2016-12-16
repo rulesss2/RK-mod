@@ -274,6 +274,10 @@ Func getVillageExp($x_start, $y_start, $removeSpace = False) ; 55, 20,  -> Gets 
 	Return getOcrAndCapture("coc-ms", $x_start, $y_start, 70, 22, $removeSpace)
 EndFunc   ;==>getVillageExp
 
+Func getVillageLevelXP($x_start, $y_start, $removeSpace = False) ; 14, 14,  -> Gets Level XP Value of Village
+    Return getOcrAndCapture("coc-ms", $x_start, $y_start, 42, 28, $removeSpace)
+EndFunc   ;==>getVillageExp
+
 Func getOcrAndCapture($language, $x_start, $y_start, $width, $height, $removeSpace = False)
 	_CaptureRegion2($x_start, $y_start, $x_start + $width, $y_start + $height)
 	Local $result = getOcr($hHBitmap2, $language)

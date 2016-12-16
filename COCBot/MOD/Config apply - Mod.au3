@@ -53,20 +53,6 @@
 	EndIf
 
    ;Forecast
-	GUICtrlSetData($txtForecastPause, $iTxtForecastPause)
-	If $iChkForecastPause = 1 Then
-		GUICtrlSetState($chkForecastPause, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkForecastPause, $GUI_UNCHECKED)
-	EndIf
-	chkForecastPause()
-
-	If $iChkDontRemoveredzone = 1 Then
-		GUICtrlSetState($chkDontRemoveredzone, $GUI_CHECKED)
-	Else
-		GUICtrlSetState($chkDontRemoveredzone, $GUI_UNCHECKED)
-	EndIf
-
 	GUICtrlSetData($txtForecastBoost, $iTxtForecastBoost)
 	If $iChkForecastBoost = 1 Then
 		GUICtrlSetState($chkForecastBoost, $GUI_CHECKED)

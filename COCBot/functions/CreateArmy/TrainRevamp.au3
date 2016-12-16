@@ -137,7 +137,7 @@ Func TestTrainRevamp()
 	If $aGetSpellsSize[0] <> "" And $aGetSpellsSize[1] <> "" Then Setlog("Spells :" & $aGetSpellsSize[0] & "/" & $aGetSpellsSize[1], $COLOR_GREEN) ; coc-ms
 	If $aGetCastleSize[0] <> "" And $aGetCastleSize[1] <> "" Then Setlog("Clan Castle : " & $aGetCastleSize[0] & "/" & $aGetCastleSize[1], $COLOR_GREEN) ; coc-ms
 
-	If IsWaitforHeroesActive() Or ($iChkTrophyRange = 1 and $iChkTrophyHeroes = 1) Then
+	If IsWaitforHeroesActive() Or ($iChkTrophyRange = 1 And $iChkTrophyHeroes = 1) Then
 		;CheckExistentArmy("Heroes")
 		getArmyHeroCount()
 	Else
@@ -151,19 +151,19 @@ Func TestTrainRevamp()
 	EndIf
 
 	Local $text = ""
-	If $fullarmy = False then
+	If $fullarmy = False Then
 		$text &= " Troops,"
 	EndIf
-	If $checkSpells = False then
+	If $checkSpells = False Then
 		$text &= " Spells,"
 	EndIf
-	If $bFullArmyHero = False then
+	If $bFullArmyHero = False Then
 		$text &= " Heroes,"
 	EndIf
-	If $fullcastlespells = False then
+	If $fullcastlespells = False Then
 		$text &= " CC Spell,"
 	EndIf
-	If $fullcastletroops = False then
+	If $fullcastletroops = False Then
 		$text &= " CC Troops,"
 	EndIf
 
@@ -172,8 +172,17 @@ Func TestTrainRevamp()
 		Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 	Else
 		Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
-	    If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
+	    If $text <> "" Then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 	EndIf
+
+	If $debugsetlogTrain = 1 Or $debugSetlog = 1 Then
+		SetLog(" » $fullarmy = " & $fullarmy, $COLOR_DEBUG)
+		SetLog(" » $checkSpells = " & $checkSpells, $COLOR_DEBUG)
+		SetLog(" » $bFullArmyHero = " & $bFullArmyHero, $COLOR_DEBUG)
+		SetLog(" » $fullcastlespells = " & $fullcastlespells, $COLOR_DEBUG)
+		SetLog(" » $fullcastletroops = " & $fullcastletroops, $COLOR_DEBUG)
+		SetLog(" » $IsFullArmywithHeroesAndSpells = " & $IsFullArmywithHeroesAndSpells, $COLOR_DEBUG)
+   EndIf
 
 	If UBound($aGetArmySize) > 1 Then
 		If $Runstate = False Then Return
@@ -336,7 +345,8 @@ Func TestTrainRevampOldStyle()
 	Local $tempElixir = ""
 	Local $tempDElixir = ""
 	Local $tempElixirSpent = 0
-	Local $tempDElixirSpent = 0
+
+	If $bDonateTrain = -1 Then SetbDonateTrain()
 
 	; Read Resource Values For army cost Stats
 	VillageReport(True, True)
@@ -352,7 +362,7 @@ Func TestTrainRevampOldStyle()
 
 	Setlog(" »» Army Window!", $COLOR_BLUE)
 
-	If OpenArmyWindow() = False then return
+	If OpenArmyWindow() = False Then Return
 	If $Runstate = False Then Return
 
 	$fullarmy = False
@@ -394,19 +404,19 @@ Func TestTrainRevampOldStyle()
 	EndIf
 
 	Local $text = ""
-	If $fullarmy = False then
+	If $fullarmy = False Then
 		$text &= " Troops,"
 	EndIf
-	If $checkSpells = False then
+	If $checkSpells = False Then
 		$text &= " Spells,"
 	EndIf
-	If $bFullArmyHero = False then
+	If $bFullArmyHero = False Then
 		$text &= " Heroes,"
 	EndIf
-	If $fullcastlespells = False then
+	If $fullcastlespells = False Then
 		$text &= " CC Spell,"
 	EndIf
-	If $fullcastletroops = False then
+	If $fullcastletroops = False Then
 		$text &= " CC Troops,"
 	EndIf
 
@@ -415,8 +425,17 @@ Func TestTrainRevampOldStyle()
 		Setlog("Chief, are your Army ready for battle? Yes, they are!", $COLOR_GREEN)
 	Else
 		Setlog("Chief, are your Army ready for battle? No, Not yet!", $COLOR_ACTION)
-		If $text <> "" then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
+		If $text <> "" Then Setlog(" »" & $text & " not Ready!", $COLOR_ACTION)
 	EndIf
+
+	If $debugsetlogTrain = 1 Or $debugSetlog = 1 Then
+		SetLog(" » $fullarmy = " & $fullarmy, $COLOR_DEBUG)
+		SetLog(" » $checkSpells = " & $checkSpells, $COLOR_DEBUG)
+		SetLog(" » $bFullArmyHero = " & $bFullArmyHero, $COLOR_DEBUG)
+		SetLog(" » $fullcastlespells = " & $fullcastlespells, $COLOR_DEBUG)
+		SetLog(" » $fullcastletroops = " & $fullcastletroops, $COLOR_DEBUG)
+		SetLog(" » $IsFullArmywithHeroesAndSpells = " & $IsFullArmywithHeroesAndSpells, $COLOR_DEBUG)
+    EndIf
 
 	Local $rWhatToTrain = WhatToTrain(True) ; r in First means Result! Result of What To Train Function
 	Local $rRemoveExtraTroops = RemoveExtraTroops($rWhatToTrain)
@@ -824,6 +843,7 @@ Func TrainUsingWhatToTrain($rWTT, $SpellsOnly = False)
 					EndIf
 					$NeededSpace = CalcNeededSpace($rWTT[$i][0], $rWTT[$i][1])
 					$LeftSpace = LeftSpace()
+					If $Runstate = False Then Return
 					If $NeededSpace <= $LeftSpace Then ; If Needed Space was Equal Or Lower Than Left Space
 						If DragIfNeeded($rWTT[$i][0]) = False Then
 							Return False
@@ -863,6 +883,7 @@ Func TrainUsingWhatToTrain($rWTT, $SpellsOnly = False)
 					EndIf
 					$NeededSpace = CalcNeededSpace($rWTT[$i][0], $rWTT[$i][1])
 					$LeftSpace = LeftSpace(True)
+					If $Runstate = False Then Return
 					$LeftSpace = ($LeftSpace[1] * 2) - $LeftSpace[0]
 					If $NeededSpace <= $LeftSpace Then ; If Needed Space was Equal Or Lower Than Left Space
 						If DragIfNeeded($rWTT[$i][0]) = False Then
@@ -911,6 +932,7 @@ Func BrewUsingWhatToTrain($Spell, $Quantity) ; it's job is a bit different with 
 			If _ColorCheck(_GetPixelColor(230, 208, True), Hex(0x677CB5, 6), 30) = False Then RemoveExtraTroopsQueue()
 			$NeededSpace = CalcNeededSpace($Spell, $Quantity)
 			$LeftSpace = LeftSpace()
+			If $Runstate = False Then Return
 			If $NeededSpace <= $LeftSpace Then ; If Needed Space was Equal Or Lower Than Left Space
 				SetLog("Brewing " & $Quantity & "x " & NameOfTroop(Eval("e" & $Spell), IIf($Quantity > 1, 1, 0)), $COLOR_GREEN)
 				TrainIt(Eval("e" & $Spell), $Quantity, $isldTrainITDelay)
@@ -934,6 +956,7 @@ Func BrewUsingWhatToTrain($Spell, $Quantity) ; it's job is a bit different with 
 		Case $IsFullArmywithHeroesAndSpells = True
 			$NeededSpace = CalcNeededSpace($Spell, $Quantity)
 			$LeftSpace = LeftSpace(True)
+			If $Runstate = False Then Return
 			$LeftSpace = ($LeftSpace[1] * 2) - $LeftSpace[0]
 			If $NeededSpace <= $LeftSpace Then ; If Needed Space was Equal Or Lower Than Left Space
 				SetLog("Brewing " & $Quantity & "x " & NameOfTroop(Eval("e" & $Spell), IIf($Quantity > 1, 1, 0)), $COLOR_GREEN)
@@ -1159,7 +1182,13 @@ Func RemoveExtraTroops($toRemove)
 	; 3 Means Didn't removed troop... Everything was well
 	Local $ToReturn = 0
 
-	If $IsFullArmywithHeroesAndSpells = True Or $fullarmy = True Or ($CommandStop = 3 Or $CommandStop = 0) = True Then
+	If UBound($toRemove) = 1 And $toRemove[0][0] = "Arch" And $toRemove[0][1] = 0 Then	; If was default Result of WhatToTrain
+		$ToReturn = 3
+		Return $ToReturn
+	EndIf
+
+    If $IsFullArmywithHeroesAndSpells = True Or $fullarmy = True Or ($CommandStop = 3 Or $CommandStop = 0) = True And Not $bDonateTrain Then
+		;If $IsFullArmywithHeroesAndSpells = True Or $fullarmy = True Or ($CommandStop = 3 Or $CommandStop = 0) = True Then
 		$ToReturn = 3
 		Return $ToReturn
 	EndIf
@@ -1282,22 +1311,54 @@ Func RemoveExtraTroops($toRemove)
 	Return $ToReturn
 EndFunc   ;==>RemoveExtraTroops
 
+Func DeleteInvalidTroopInArray(ByRef $Array)
+	Switch (UBound($Array, 2) > 0) ; If Array Is 2D Array
+		Case True
+			Local $canKeep = True
+			Local $2DBound = UBound($Array, 2)
+			$Counter = 0
+			For $i = 0 To (UBound($Array) - 1)
+				If (Eval("e" & $Array[$i][0]) = "" And Eval("e" & $Array[$i][0]) <> 0) Or $Array[$i][0] = "" Then
+					$canKeep = False
+				Else
+					$canKeep = True
+				EndIf
+				If $canKeep = True Then
+					For $j = 0 To (UBound($Array, 2) - 1)
+						$Array[$Counter][$j] = $Array[$i][$j]
+					Next
+					$Counter += 1
+				EndIf
+			Next
+			ReDim $Array[$Counter][$2DBound]
+		Case Else
+			$Counter = 0
+			For $i = 0 To (UBound($Array) - 1)
+				If (Eval("e" & $Array[$i]) = "" And Eval("e" & $Array[$i]) <> 0) Or $Array[$i] = "" Then
+					$Array[$Counter] = $Array[$i]
+					$Counter += 1
+				EndIf
+			Next
+			ReDim $Array[$Counter]
+	EndSwitch
+EndFunc   ;==>DeleteInvalidTroopInArray
+
 Func RemoveExtraTroopsQueue() ; Will remove All Extra troops in queue If there's a Low Opacity red color on them
 	;Local Const $DecreaseBy = 70
 	;Local $x = 834
 	If $IsFullArmywithHeroesAndSpells = True Then Return True
 
-	Local Const $y = 187, $yRemoveBtn = 200, $xDecreaseRemoveBtn = 10
+	Local Const $y = 259, $yRemoveBtn = 200, $xDecreaseRemoveBtn = 10
 	Local $rColCheck = ""
 	Local $Removed = False
 	For $x = 834 To 58 Step -70
 		If $Runstate = False Then Return
 		$rColCheck = _ColorCheck(_GetPixelColor($x, $y, True), Hex(0xD7AFA9, 6), 20)
 		If $rColCheck = True Then
+			$Removed = True
 			Do
-				If _Sleep(20) Then Return
 				Click($x - $xDecreaseRemoveBtn, $yRemoveBtn, 2, $isldTrainITDelay)
-				$Removed = True
+				If _Sleep(20) Then Return
 				$rColCheck = _ColorCheck(_GetPixelColor($x, $y, True), Hex(0xD7AFA9, 6), 20)
 			Until $rColCheck = False
 		ElseIf $rColCheck = False And $Removed Then
@@ -1442,7 +1503,7 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 	If ISArmyWindow(False, $ArmyTAB) = False Then OpenTrainTabNumber($ArmyTAB)
 	Local $ToReturn[1][2] = [["Arch", 0]]
 
-	If $IsFullArmywithHeroesAndSpells Then
+	If $IsFullArmywithHeroesAndSpells And $ReturnExtraTroopsOnly = False Then
 		If $CommandStop = 3 Or $CommandStop = 0 Then
 			If $FirstStart Then $FirstStart = False
 			Return $ToReturn
@@ -1570,7 +1631,7 @@ Func WhatToTrain($ReturnExtraTroopsOnly = False, $showlog = True)
 				EndIf
 			Next
 	EndSwitch
-	_ArrayDelete($ToReturn, UBound($ToReturn) - 1)
+	DeleteInvalidTroopInArray($ToReturn)
 	Return $ToReturn
 EndFunc   ;==>WhatToTrain
 
@@ -1645,14 +1706,14 @@ Func OpenArmyWindow()
 	If _Sleep($iDelayTrain4) Then Return ; wait for window to open
 
 	Local $x = 0
-    While ISArmyWindow(True, $ArmyTAB) = False
-        If _sleep($iDelayTrain4) then return
-        $x += 1
-        If $x = 50 then
+	While ISArmyWindow(True, $ArmyTAB) = False
+		If _sleep($iDelayTrain4) Then Return
+		$x += 1
+		If $x = 50 Then
 			SetError(1)
 			Return False ; exit if I'm not in train page
-        EndIf
-    WEnd
+		EndIf
+	WEnd
 
 	Return True
 
@@ -2029,7 +2090,8 @@ Func DeleteTroopsQueued()
 	SetLog(" »» Delete Troops Queued ", $COLOR_ACTION)
 	If _Sleep(500) Then Return
 	Local $x = 0
-	While _ColorCheck(_GetPixelColor(802, 220, True), Hex(0Xbac8a5, 6), 10) = False
+	;While _ColorCheck(_GetPixelColor(834, 259, True), Hex(0xD7AFA9, 6), 20) = False
+	While Not IsQueueEmpty(-1, True, False)
 		If _Sleep(20) Then Return
 		If $Runstate = False Then Return
 		Click(826, 202, 2, 50)
@@ -2048,7 +2110,7 @@ Func DeleteSpellsQueued()
 	SetLog(" »» Delete Spells Queued ", $COLOR_ACTION)
 	If _Sleep(500) Then Return
 	Local $x = 0
-	While _ColorCheck(_GetPixelColor(802, 220, True), Hex(0Xbac8a5, 6), 10) = False
+	While Not IsQueueEmpty(-1, True, False)
 		If _Sleep(20) Then Return
 		If $Runstate = False Then Return
 		Click(826, 202, 2, 100)
@@ -2504,25 +2566,25 @@ Func SlotAttack($PosX)
 
 	Local $CheckSlot11 = _ColorCheck(_GetPixelColor(17, 580 + $bottomOffsetY, True), Hex(0x07202A, 6), 15)
 
-	If $debugSetlog = 1 Then
+	If $DebugSetlog = 1 Then
 		Setlog(" Slot 0  _ColorCheck 0x07202A at (17," & 580 + $bottomOffsetY & "): " & $CheckSlot11, $COLOR_DEBUG) ;Debug
 		Local $SlotPixelColorTemp = _GetPixelColor(17, 580 + $bottomOffsetY, $bCapturePixel)
 		Setlog(" Slot 0  _GetPixelColo(17," & 580 + $bottomOffsetY & "): " & $SlotPixelColorTemp, $COLOR_DEBUG) ;Debug
 	EndIf
 
 	Local $Slottemp[2] = [0, 0]
-	If $RunState = False Then Return
+	If $Runstate = False Then Return
 
-	for $i = 0 to 12
-		If $PosX >= 25 + ($i * 73)  and $PosX < 98 + ($i * 73) then
+	For $i = 0 To 12
+		If $PosX >= 25 + ($i * 73) And $PosX < 98 + ($i * 73) Then
 			$Slottemp[0] = 35 + ($i * 73)
 			$Slottemp[1] = $i
 			If $CheckSlot11 = False Then $Slottemp[0] -= 13
-			If $debugSetlog = 1 Then Setlog("Slot: " & $i & " | $x > " & 25 + ($i * 73) & " and $x < " & 98 + ($i * 73) & @CRLF)
-			If $debugSetlog = 1 Then Setlog("Slot: " & $i & " | $PosX: " & $PosX & " |  $Slottemp[0]: " & $Slottemp[0] & " | $Slottemp[1]: " & $Slottemp[1] & @CRLF)
+			If $DebugSetlog = 1 Then Setlog("Slot: " & $i & " | $x > " & 25 + ($i * 73) & " and $x < " & 98 + ($i * 73) & @CRLF)
+			If $DebugSetlog = 1 Then Setlog("Slot: " & $i & " | $PosX: " & $PosX & " |  $Slottemp[0]: " & $Slottemp[0] & " | $Slottemp[1]: " & $Slottemp[1] & @CRLF)
 			Return $Slottemp
-		EndIF
-	next
+		EndIf
+	Next
 
 EndFunc   ;==>SlotAttack
 

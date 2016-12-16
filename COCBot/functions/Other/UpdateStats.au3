@@ -59,6 +59,9 @@ Func UpdateStats()
 		$iElixirStart = $iElixirCurrent
 		$iDarkStart = $iDarkCurrent
 		$iTrophyStart = $iTrophyCurrent
+		;XP & Level detection
+		$iXPStart = $iXPCurrent
+		$iLevelXPStart = $iLevelXPCurrent
 		GUICtrlSetData($lblResultGoldStart, _NumberFormat($iGoldCurrent, True))
 		GUICtrlSetData($lblResultGoldNow, _NumberFormat($iGoldCurrent, True))
 		$iOldGoldCurrent = $iGoldCurrent

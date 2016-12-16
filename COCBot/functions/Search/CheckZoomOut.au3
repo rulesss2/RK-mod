@@ -14,6 +14,7 @@
 ; ===============================================================================================================================
 ;
 Func CheckZoomOut($Attack = False)
+	If $Attack = True Then WaitForClouds()
 	Local $aVillageResult = SearchZoomOut(@ScriptDir & "\imgxml\zoomout", $CenterVillage[0], $Attack)
 	If StringInStr($aVillageResult[0], "zoomou") = 0 Then
 		; not zoomed out, Return

@@ -38,8 +38,6 @@ Global $iBotLaunchTime = 0
 Global $hBotLaunchTime = TimerInit()
 
 Global $sBotVersion = "v6.2.2" ;~ Don't add more here, but below. Version can't be longer than vX.y.z because it it also use on Checkversion()
-Global $sModversion = "" ;<== Just Change This to Version Number
-Global $sModSupportUrl = "https://mybot.run/forums/index.php?/topic/24893-mybotrun-dococ-v322-oct-sc-update/" ;<== Our Website Link Or Link Download
 
 Global $sBotTitle = "My Bot " & $sBotVersion & "  RK MOD v 2.0 "  ;~ Don't use any non file name supported characters like \ / : * ? " < > |
 
@@ -439,7 +437,6 @@ EndFunc   ;==>_runBot
 Func Idle() ;Sequence that runs until Full Army
 	Local $TimeIdle = 0 ;In Seconds
     ForecastSwitch()
-	PauseMeteo()
 	If $debugsetlog = 1 Then SetLog("Func Idle ", $COLOR_PURPLE)
 
 	While $IsFullArmywithHeroesAndSpells = False

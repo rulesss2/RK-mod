@@ -21,7 +21,7 @@
 ; ===============================================================================================================================
 Func SetLog($String, $Color = $COLOR_BLACK, $Font = "Verdana", $FontSize = 7.5, $statusbar = 1, $time = Time(), $bConsoleWrite = True, $LogPrefix = "L ", $LogType = "bot") ;Sets the text for the log
 	Local $log = $LogPrefix & TimeDebug() & $String
-	;If $bConsoleWrite = True And $String <> "" Then _ConsoleWrite($log & @CRLF, $LogType) ; Always write any log to console
+	If $bConsoleWrite = True And $String <> "" Then ConsoleWrite($log & @CRLF) ; Always write any log to console
 	If $hLogFileHandle = "" Then CreateLogFile()
 	If $SilentSetLog = True Then
 		; Silent mode is active, only write to log file, not to log control
@@ -67,7 +67,7 @@ Func SetDebugLog($String, $Color = Default, $bSilentSetLog = False, $Font = "Ver
 	If $Color = Default Then $Color = $COLOR_PURPLE
 	Local $LogPrefix = "D "
 	Local $log = $LogPrefix & TimeDebug() & $String
-	;If $String <> "" Then _ConsoleWrite($log & @CRLF) ; Always write any log to console
+	If $String <> "" Then ConsoleWrite($log & @CRLF) ; Always write any log to console
 	If $debugSetlog = 1 And $bSilentSetLog = False Then
 		SetLog($String, $Color, $Font, $FontSize, $statusbar, Time(), False, $LogPrefix, $LogType)
 	Else

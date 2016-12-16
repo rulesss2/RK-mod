@@ -41,12 +41,11 @@ Func ReArm()
 	EndIf
 	; --- End ---
 
-	ClickP($aAway, 1, 0, "#0224") ; Click away
+    ClickP($aAway, 1, 0, "#0224") ; Click away
 	If _Sleep($iDelayReArm4) Then Return
 
 	If IsMainPage() Then Click($TownHallPos[0], $TownHallPos[1] + 5, 1, 0, "#0225")
 	Local $TownHallPos2 = $TownHallPos[1] + 5
-	SetLog("TownHall: (" & $TownHallPos[0] & "," & $TownHallPos2 & ")", $COLOR_DEBUG)
 
 	If _Sleep($iDelayReArm2) Then Return
 
@@ -64,9 +63,18 @@ Func ReArm()
 			$pixel = $PixelTHHere[0]
 			$TownHallPos[0] = $pixel[0] + 5
 			$TownHallPos[1] = $pixel[1] + 5
-			saveConfig()
 			If $debugSetlog = 1 Then SetLog("ImgLoc# Townhall: (" & $TownHallPos[0] & "," & $TownHallPos[1] & ")", $COLOR_DEBUG) ;Debug
-			If $debugSetlog = 1 Then SetLog("TownHallLevel = " & Number($iTownHallLevel), $COLOR_DEBUG) ;Debug
+			If _Sleep($iDelayReArm4) Then Return
+
+			If IsMainPage() Then Click($TownHallPos[0], $TownHallPos[1] + 5, 1, 0, "#0225")
+			SetLog("TownHall: (" & $TownHallPos[0] & "," & $TownHallPos2 & ")", $COLOR_DEBUG)
+			GetTownHallLevel(True)
+			If $debugSetlog = 1 Then SetLog("$iTownHallLevel = " & $iTownHallLevel, $COLOR_DEBUG) ;Debug
+			saveConfig()
+			If _Sleep($iDelayReArm2) Then Return
+
+			ClickP($aAway, 1, 0, "#0224") ; Click away
+			If _Sleep($iDelayReArm4) Then Return
 		EndIf
 	EndIf
 

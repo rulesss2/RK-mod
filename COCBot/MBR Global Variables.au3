@@ -611,7 +611,7 @@ Global $TGLastMessage = ""
 Global $grpNotify, $chkNotifyPBEnabled,$chkNotifyRemote,$chkNotifyDeleteAllPBPushes,$btnNotifyDeleteMessages,$chkNotifyDeleteOldPBPushes,$cmbNotifyPushHours
 Global $txbNotifyPBToken, $txbNotifyTGToken, $txbNotifyOrigin, $chkNotifyAlertMatchFound, $chkNotifyAlertLastRaidIMG, $chkNotifyAlertLastRaidTXT, $chkNotifyAlertCampFull
 Global $chkNotifyAlertUpgradeWall, $chkNotifyAlertOutOfSync, $chkNotifyAlertTakeBreak, $chkNotifyAlertBuilderIdle, $chkNotifyAlertVillageStats, $chkNotifyAlertLastAttack
-Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep 
+Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep
 ;--------------------------------------------------------------------------
 ; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
 ;-------------------------------------------------------------------------
@@ -634,9 +634,9 @@ Global $BSrpos[2] ; Inside Android window positions relative to the window, [x,y
 ;---------------------------------------------------------------------------------------------------
 ;Stats
 Global $iFreeBuilderCount, $iTotalBuilderCount, $iGemAmount ; builder and gem amounts
-Global $iGoldStart, $iElixirStart, $iDarkStart, $iTrophyStart ; stats at the start
+Global $iGoldStart, $iElixirStart, $iDarkStart, $iTrophyStart, $iXPStart, $iLevelXPStart ; stats at the start
 Global $iGoldTotal, $iElixirTotal, $iDarkTotal, $iTrophyTotal ; total stats
-Global $iGoldCurrent, $iElixirCurrent, $iDarkCurrent, $iTrophyCurrent ; current stats
+Global $iGoldCurrent, $iElixirCurrent, $iDarkCurrent, $iTrophyCurrent, $iXPCurrent, $iLevelXPCurrent ; current stats
 Global $iGoldLast, $iElixirLast, $iDarkLast, $iTrophyLast ; loot and trophy gain from last raid
 Global $iGoldLastBonus, $iElixirLastBonus, $iDarkLastBonus ; bonus loot from last raid
 Global $iBonusLast = 0 ; last attack Bonus percentage
@@ -891,6 +891,9 @@ Global $IsCCAutoLocated[4] = [0, 0, 33, 2] ;A Flag to know if CC Auto Located! [
 Global $LastDonateBtn1 = -1, $LastDonateBtn2 = -1
 Global $DonatePixel
 Global $iClanLevel
+Global $bDonate = -1	; -1 means not set yet
+Global $bDonateTrain = -1	; -1 means not set yet
+
 
 Global $sTxtRequest = ""
 Global $ichkDonateAllBarbarians, $ichkDonateBarbarians, $sTxtDonateBarbarians, $sTxtBlacklistBarbarians, $aDonBarbarians, $aBlkBarbarians
@@ -1747,11 +1750,6 @@ Global $sMinTimeCloseATK = 15
 
 ;Left-Right Click
 Global $iGUIEnabled = True
-
-;DocOc Version
-Global $lastModversion = "" ;latest version from GIT
-Global $lastModmessage = "" ;message for last version
-Global $oldModversmessage = "" ;warning message for old bot
 ; ================================================== BOT HUMANIZATION PART ================================================== ;
 
 Global $MinimumPriority, $MaxActionsNumber, $ActionToDo
