@@ -437,7 +437,6 @@ EndFunc   ;==>_runBot
 Func Idle() ;Sequence that runs until Full Army
 	Local $TimeIdle = 0 ;In Seconds
     ForecastSwitch()
-	PauseMeteo()
 	If $debugsetlog = 1 Then SetLog("Func Idle ", $COLOR_PURPLE)
 
 	While $IsFullArmywithHeroesAndSpells = False
