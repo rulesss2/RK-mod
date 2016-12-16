@@ -66,7 +66,7 @@ $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
    GUICtrlSetState($chkGlobalChat, $ChatbotChatGlobal)
    GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
 	GUICtrlCreateLabel(GetTranslated(106, 3, "Advertise in global"), $x + 7, $y, -1, -1)
-	GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)	
+	GUICtrlSetBkColor(-1, $GUI_BKCOLOR_TRANSPARENT)
    $y += 18
    $chkGlobalScramble = GUICtrlCreateCheckbox("", $x - 10, $y, 13, 13)
 	_GUICtrlSetTip($chkGlobalScramble, GetTranslated(106, 6, "Scramble the message pieces defined in the textboxes below to be in a random order"))
@@ -82,7 +82,7 @@ $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
 	;======kychera===========
    $cmbLang = GUICtrlCreateCombo("", $x + 120, $y, 45, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
    GUICtrlSetData(-1, "FR|DE|ES|IT|NL|NO|PR|TR|RU", "RU")
-   ;==========================   
+   ;==========================
    $y += 22
   $ChatbotChatDelayLabel = GUICtrlCreateLabel(GetTranslated(106,9,"Chat Delay"), $x - 10, $y)
    GUICtrlSetTip($ChatbotChatDelayLabel, GetTranslated(106,10,"Delay chat between number of bot cycles"))
@@ -176,30 +176,7 @@ Local $x = $xStart + 10, $y = $yStart + 30
 
 $37 = GUICtrlCreatePic (@ScriptDir & "\Images\1.jpg", 2, 23, 442, 367, $WS_CLIPCHILDREN)
 
-$grpPauses = GUICtrlCreateGroup(GetTranslated(107,4,"Weather breaks"), $x , $y , 420, 80)
-	$chkForecastPause = GUICtrlCreateCheckbox("", $x + 10, $y + 27, 13, 13);$x + 10, $y + 25, -1, -1)
-		$txtTip = GetTranslated(107,6,"The bot will pause when the index drops below the set value.")
-		GUICtrlSetTip(-1, $txtTip)
-		GUICtrlSetOnEvent(-1, "chkForecastPause")
-		GUICtrlSetState(-1, $GUI_ENABLE)
-		GUICtrlSetState(-1, $GUI_UNCHECKED)
-		GUICtrlCreateLabel(GetTranslated(107,5,"Take breaks when the index weather <"), $x + 28, $y + 27, -1, -1)
-	$txtForecastPause = GUICtrlCreateInput("2.5", $x + 225, $y + 27, 30, 18, BitOR($GUI_SS_DEFAULT_INPUT, $ES_CENTER))
-		$txtTip = GetTranslated(107,7,"Minimum loot index.")
-		GUICtrlSetState(-1, $GUI_DISABLE)
-		GUICtrlSetLimit(-1, 3)
-		GUICtrlSetData(-1, 2.5)
-		GUICtrlSetTip(-1, $txtTip)
-		_GUICtrlEdit_SetReadOnly(-1, True)
-	$chkDontRemoveredzone = GUICtrlCreateCheckbox("", $x + 10, $y + 50, 13, 13)
-		$txtTip = GetTranslated(107,9,"The bot doesn't empty barracks at each reconnection if the index is below the set value.")
-		GUICtrlSetTip(-1, $txtTip)
-		GUICtrlSetState(-1, $GUI_DISABLE)
-		GUICtrlSetState(-1, $GUI_UNCHECKED)
-		GUICtrlCreateLabel(GetTranslated(107,8,"Don't empty barracks at each reconnection if the index is below the set value"), $x + 28, $y + 50, -1, -1)
-GUICtrlCreateGroup("", -99, -99, 1, 1)
-
-$y += 85
+$y += - 7
 $grpBoost = GUICtrlCreateGroup(GetTranslated(107,11,"Boosts"), $x , $y , 420, 70)
 	$chkForecastBoost = GUICtrlCreateCheckbox("", $x + 10, $y + 27, 13, 13)
 		$txtTip = GetTranslated(107,13,"Boost Barracks, Spells, and/or Heroes (Specified on the Troops tab) only when the loot index is above the specified value.")

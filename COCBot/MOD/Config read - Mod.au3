@@ -32,9 +32,6 @@
 	  IniReadS($iRadio_Army123, $config, "troop", "QuickTrain123", "0")
 
       ;Forecast
-	  $iTxtForecastPause = IniRead($config, "forecast", "txtForecastPause", "2.5")
-	  $iChkForecastPause = IniRead($config, "forecast", "chkForecastPause", "0")
-	  $iChkDontRemoveredzone = IniRead($config, "troop", "DontRemoveredzone", "0")
 	  $iTxtForecastBoost = IniRead($config, "forecast", "txtForecastBoost", "6.0")
 	  $iChkForecastBoost = IniRead($config, "forecast", "chkForecastBoost", "0")
 	  $ichkForecastHopingSwitchMax = IniRead($config, "profiles", "chkForecastHopingSwitchMax", "0")

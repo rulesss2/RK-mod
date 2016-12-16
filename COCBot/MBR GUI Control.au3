@@ -442,29 +442,7 @@ Func GUIControl_WM_COMMAND($hWind, $iMsg, $wParam, $lParam)
 			 btnDBCheck()
 	    Case $btnPosCheck
 			 btnPosCheck()
-	    Case $txtForecastPause
-					Local $input = GUICtrlRead($txtForecastPause)
-					Local $return = ""
-					For $i = 1 To StringLen($input)
-						Local $chr = StringMid($input, $i, 1)
-						Switch $i
-							Case 1
-								If StringIsDigit($chr) Then
-									$return &= $chr
-								ElseIf $chr = "." Then
-									$return &= "0."
-								EndIf
-							Case 2
-								If $chr = "." Then
-									$return &= "."
-								EndIf
-						Case 3
-								If StringIsDigit($chr) Then
-									$return &= $chr
-								EndIf
-						EndSwitch
-					Next
-					GUICtrlSetData($txtForecastPause, $return)
+
 	EndSwitch
 
 	$TogglePauseAllowed = $wasAllowed

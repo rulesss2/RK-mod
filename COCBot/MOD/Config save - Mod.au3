@@ -71,20 +71,7 @@
 	EndIf
 
     ;forecast
-	IniWrite($config, "forecast", "txtForecastPause", GUICtrlRead($txtForecastPause))
 	IniWrite($config, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
-
-	If GUICtrlRead($chkForecastPause) = $GUI_CHECKED Then
-		IniWrite($config, "forecast", "chkForecastPause", 1)
-	Else
-		IniWrite($config, "forecast", "chkForecastPause", 0)
-	EndIf
-
-	If GUICtrlRead($chkDontRemoveredzone) = $GUI_CHECKED Then
-		IniWrite($config, "forecast", "DontRemoveredzone", 1)
-	Else
-		IniWrite($config, "forecast", "DontRemoveredzone", 0)
-	EndIf
 
 	If GUICtrlRead($chkForecastBoost) = $GUI_CHECKED Then
 		IniWrite($config, "forecast", "chkForecastBoost", 1)

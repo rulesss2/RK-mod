@@ -57,9 +57,6 @@ Global $timeOffset = 0
 Global $TimerForecast = 0
 Global $lootIndexScaleMarkers
 Global $currentForecast
-Global $chkForecastPause, $txtForecastPause
-Global $iChkForecastPause, $iTxtForecastPause
-Global $iChkDontRemoveredzone, $chkDontRemoveredzone
 Global $chkForecastBoost, $txtForecastBoost
 Global $iChkForecastBoost, $iTxtForecastBoost
 Global $cmbForecastHopingSwitchMax, $cmbForecastHopingSwitchMin

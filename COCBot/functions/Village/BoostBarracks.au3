@@ -26,6 +26,18 @@ Func BoostBarracks()
 		EndIf
 	EndIf
 
+   If $iChkForecastBoost = 1 Then
+		If $currentForecast > Number($iTxtForecastBoost, 3) Then
+		Local $hour = StringSplit(_NowTime(4), ":", $STR_NOCOUNT)
+			If $iPlannedBoostBarracksHours[$hour[0]] = 0 Then
+				SetLog("No planned boosting for this hour.", $COLOR_RED)
+				Return ; exit func if no planned Boost Barracks checkmarks
+			EndIf
+		Else
+			Return
+		EndIf
+    EndIf
+
 	If OpenArmyWindow() = True Then
 		Local $CheckArmyWindow = ISArmyWindow()
 		OpenTrainTabNumber(1)
@@ -51,6 +63,9 @@ EndFunc   ;==>BoostBarracks
 
 Func BoostSpellFactory()
 	If $bTrainEnabled = False Then Return
+
+    If $iChkForecastBoost = 1 And $currentForecast <= Number($iTxtForecastBoost, 3) Then Return
+
 	If $icmbBoostSpellFactory > 0 And $boostsEnabled = 1 Then
 		SetLog("Boosting Spell Factory...", $COLOR_BLUE)
 
