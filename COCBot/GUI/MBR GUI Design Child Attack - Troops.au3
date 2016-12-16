@@ -22,11 +22,11 @@ $hGUI_ARMY = GUICreate("", $_GUI_MAIN_WIDTH - 28, $_GUI_MAIN_HEIGHT - 255 - 28, 
 
 $textBoostLeft = GetTranslated(623, 1, "Boosts left")
 
-$sTxtClick = "Mouse Left Click To Increase" & @CRLF & "Mouse Right Click To Decrease"
-$sTxtSetPerc = GetTranslated(621, 26, "Enter the No. of")
-$sTxtSetPerc2 = GetTranslated(621, 27, " to make.") & @CRLF & "Or click icon with:" & @CRLF & $sTxtClick
-$sTxtSetPerc3 = GetTranslated(621, 28, "Enter the No. of")
-$sTxtSetSpell = GetTranslated(621, 29, "Spells to make.") & @CRLF & "Or click icon with:" & @CRLF & $sTxtClick
+$sTxtClick = GetTranslated(621,33,"Mouse Left Click To Increase") & @CRLF & GetTranslated(621,34,"Mouse Right Click To Decrease")
+$sTxtSetPerc = GetTranslated(621,26, "Enter the No. of")
+$sTxtSetPerc2 = GetTranslated(621,27, " to make.") & @CRLF & GetTranslated(621,35,"Or click icon with:") & @CRLF & $sTxtClick
+$sTxtSetPerc3 = GetTranslated(621,28, "Enter the No. of")
+$sTxtSetSpell = GetTranslated(621,29, "Spells to make.") & @CRLF & GetTranslated(621,35,"Or click icon with:") & @CRLF & $sTxtClick
 
 $sTxtNone = GetTranslated(603, 0, "None")
 
