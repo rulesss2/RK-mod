@@ -27,12 +27,12 @@ Local $x = 25, $y = 20
 			_GUICtrlSetTip(-1, GetTranslated(608,33,"Select a preset troop drop order.")&@CRLF&GetTranslated(608,34,"Each option deploys troops in a different order and in different waves")&@CRLF&GetTranslated(608,35,"Only the troops selected in the ""Only drop these troops"" option will be dropped"))
 	$y += 25
 		$lblDeployDB = GUICtrlCreateLabel(GetTranslated(608,3, "Attack on")&":", $x, $y + 5, -1, -1)
-		$cmbDeployDB = GUICtrlCreateCombo("", $x + 55, $y, 120, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		$cmbDeployDB = GUICtrlCreateCombo("", $x + 35, $y, 160, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		 _GUICtrlSetTip(-1, GetTranslated(608,4, "Attack on a single side, penetrates through base") & @CRLF & GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base"), GetTranslated(608,7,"Select the No. of sides to attack on."))
 
 ; Adding Classic FourFinger - DEMEN
-			GUICtrlSetData(-1, GetTranslated(608,8, "one side") & "|" & GetTranslated(608,9, "two sides") & "|" & GetTranslated(608,10, "three sides") &"|" & GetTranslated(608,11,"all sides equally") & "|" & GetTranslated(671,42,"Multi Finger") & "|" & "Classic Four Fingers", GetTranslated(608,11, -1))
-			GUICtrlSetOnEvent(-1,"Bridge") ; Uncheck SmartAttack Red Area when enable FourFinger to avoid conflict - DEMEN
+			GUICtrlSetData(-1, GetTranslated(608,8, "one side") & "|" & GetTranslated(608,9, "two sides") & "|" & GetTranslated(608,10, "three sides") &"|" & GetTranslated(608,11,"all sides equally") & "|" & GetTranslated(671,42, "Multi Finger") & "|" & GetTranslated(671,55, "Classic Four Fingers"), GetTranslated(608,11, -1))
+			GUICtrlSetOnEvent(-1,"Bridge") ; Uncheck SmartAttack Red Area when enable FourFinger to avoid conflict
 
 		$y += 25
 		$lblUnitDelayDB = GUICtrlCreateLabel(GetTranslated(608,12, "Delay Unit") & ":", $x, $y + 5, -1, -1)
@@ -85,11 +85,11 @@ Local $x = 25, $y = 20
 
     $x = 25
 	$y += 60
-	$lblDBMultiFinger = GUICtrlCreateLabel("Style:", $x, $y + 3, 30, -1, $SS_RIGHT)
-	$cmbDBMultiFinger = GUICtrlCreateCombo("", $x + 35, $y, 170, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-		$txtTip = "Select which multi finger attack style you would like." & @CRLF & @CRLF & _
-				  "     Random will chose one of the attacks at random." & @CRLF & _
-				  "     Four Finger and Eight Finger attacks will attack from all 4 sides at once."
+	$lblDBMultiFinger = GUICtrlCreateLabel(GetTranslated(671,51,"Style:"), $x, $y + 3, 35, -1, $SS_RIGHT)
+	$cmbDBMultiFinger = GUICtrlCreateCombo("", $x + 35, $y, 175, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		$txtTip = GetTranslated(671,52,"Select which multi finger attack style you would like.") & @CRLF & @CRLF & _
+			GetTranslated(671,53,	  "     Random will chose one of the attacks at random.") & @CRLF & _
+			GetTranslated(671,54,	  "     Four Finger and Eight Finger attacks will attack from all 4 sides at once.")
 	GUICtrlSetTip(-1, $txtTip)
 	GUICtrlSetData(-1,  GetTranslated(671,43,"Random") & "|" & _
 						GetTranslated(671,44,"Four Finger Standard") & "|" & _
