@@ -71,7 +71,7 @@ Local $x = 25, $y = 45, $xStart = 25, $yStart = 45
 			GUICtrlSetBkColor (-1, 0xbfdfff)
 
 	$x = $xStart
-	$y += 67
+	$y += 60
 		GUICtrlCreateLabel(GetTranslated(700, 11, "Goblin XP attack continuously the TH of Goblin Picnic to farm XP."), $x, $y, 312, 17)
 		GUICtrlCreateLabel(GetTranslated(700, 12, "At each attack, you win 5 XP"), $x, $y + 20, 306, 17)
 
