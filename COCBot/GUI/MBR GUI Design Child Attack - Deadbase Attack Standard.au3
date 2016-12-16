@@ -22,12 +22,12 @@ Local $x = 25, $y = 20
 ;	$x -= 15
 		$lblDBmode = GUICtrlCreateLabel(GetTranslated(608,2,"Troop Drop Order"),$x, $y, 143,18,$SS_LEFT)
 	$y += 15
-		$cmbStandardAlgorithmDB = GUICtrlCreateCombo("", $x, $y, 150, Default, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		$cmbStandardAlgorithmDB = GUICtrlCreateCombo("", $x, $y, 163, Default, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 			GUICtrlSetData(-1, GetTranslated(608,25,"Default(All Troops)")&"|Barch/BAM/BAG|GiBarch", GetTranslated(608,25, -1))
 			_GUICtrlSetTip(-1, GetTranslated(608,33,"Select a preset troop drop order.")&@CRLF&GetTranslated(608,34,"Each option deploys troops in a different order and in different waves")&@CRLF&GetTranslated(608,35,"Only the troops selected in the ""Only drop these troops"" option will be dropped"))
 	$y += 25
 		$lblDeployDB = GUICtrlCreateLabel(GetTranslated(608,3, "Attack on")&":", $x, $y + 5, -1, -1)
-		$cmbDeployDB = GUICtrlCreateCombo("", $x + 35, $y, 160, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+		$cmbDeployDB = GUICtrlCreateCombo("", $x + 35, $y, 140, 25, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		 _GUICtrlSetTip(-1, GetTranslated(608,4, "Attack on a single side, penetrates through base") & @CRLF & GetTranslated(608,5, "Attack on two sides, penetrates through base") & @CRLF & GetTranslated(608,6, "Attack on three sides, gets outer and some inside of base"), GetTranslated(608,7,"Select the No. of sides to attack on."))
 
 ; Adding Classic FourFinger - DEMEN
