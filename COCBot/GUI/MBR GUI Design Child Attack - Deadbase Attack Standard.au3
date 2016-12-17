@@ -100,5 +100,16 @@ Local $x = 25, $y = 20
 						GetTranslated(671,49,"Eight Finger Pin Wheel Spiral Left") & "|" & _
 						GetTranslated(671,50,"Eight Finger Pin Wheel Spiral Right"), GetTranslated(671,44,"Four Finger Standard"))
 	GUICtrlSetOnEvent(-1, "cmbDBMultiFinger")
+GUICtrlCreateGroup("", -99, -99, 1, 1)
 
+	$y += 25
+ 	$x -= - 9
+ 		$chkSmartFarmAttack = GUICtrlCreateCheckbox(GetTranslated(608,290, "Smart Farm Attack"), $x, $y, -1, -1)
+ 			$txtTip = GetTranslated(608,300, "Will attack first the outside resources") & @CRLF & _
+ 					  GetTranslated(608,301, "Detect resources and decide the best side to attack through center") & @CRLF & _
+ 					  GetTranslated(608,302, "Best side: Resources 'if exist' or TH")
+ 			_GUICtrlSetTip(-1, $txtTip)
+ 			;GUICtrlSetState(-1, $GUI_CHECKED)
+ 			GUICtrlSetOnEvent(-1, "chkSmarFarmAttack")
 ;GUISetState()
+GUICtrlCreateGroup("", -99, -99, 1, 1)
