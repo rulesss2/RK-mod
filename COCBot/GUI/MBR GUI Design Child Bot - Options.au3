@@ -32,7 +32,7 @@ GUICtrlCreateGroup("", -99, -99, 1, 1)
 $y += 54
 $grpOnLoadBot = GUICtrlCreateGroup(GetTranslated(636,2, "When Bot Loads"), $x - 20, $y - 20, 210, 120)
 	$y -= 4
-    $chkDisableSplash = GUICtrlCreateCheckbox(GetTranslated(636,100, "Disable Splash Screen"), $x, $y, -1, -1)       
+    $chkDisableSplash = GUICtrlCreateCheckbox(GetTranslated(636,100, "Disable Splash Screen"), $x, $y, -1, -1)
 		$txtTip = GetTranslated(636,101, "Disables the splash screen on startup.")
         GUICtrlSetTip(-1, $txtTip)
         GUICtrlSetState(-1, $GUI_UNCHECKED)
@@ -123,7 +123,7 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 		_GUICtrlSetTip(-1, $txtTip)
 		GUICtrlSetState(-1, $GUI_DISABLE)
         $y += 49
-        $grpPic = GUICtrlCreateGroup(GetTranslated(636,109, "Options Backgroung"), $x - 20, $y - 20 , 210, 70)
+        $grpPic = GUICtrlCreateGroup(GetTranslated(636,109, "Options Backgroung"), $x - 20, $y - 20 , 210, 45)
 		$y += -5
 		$chkPic = GUICtrlCreateCheckbox("", $x, $y + 2, 13, 13)
         $txtTip = GetTranslated(636,108, "Enable Background.")
@@ -133,7 +133,7 @@ $grpOnStartBot = GUICtrlCreateGroup(GetTranslated(636,12, "When Bot Starts"), $x
 		GUICtrlCreateLabel(GetTranslated(636,107, "Enable Backgroung"), $x + 17, $y + 2, -1, -1)
 		;$y += 25
 		$x += 120
-	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))		
+	$BackGr = GUICtrlCreateCombo("", $x, $y, 60, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 		GUICtrlSetData(-1, GetTranslated(1000,101, "Key1") & "|" & _
 		                   GetTranslated(1000,102, "Key2") & "|" & _
 						   GetTranslated(1000,103, "Key3") & "|" & _
@@ -185,7 +185,7 @@ $grpTimeWakeUp = GUICtrlCreateGroup(GetTranslated(636,85, "Remote Device"), $x -
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 $y+= 51
-$grpOtherExpert = GUICtrlCreateGroup(GetTranslated(636,45, "Other Options"), $x - 20, $y - 20, 225, 90)
+$grpOtherExpert = GUICtrlCreateGroup(GetTranslated(636,45, "Other Options"), $x - 20, $y - 20, 225, 63)
 $chkSinglePBTForced = GUICtrlCreateCheckbox(GetTranslated(636,61, "Force Single PB logoff"), $x-5, $y, -1, -1)
 	GUICtrlSetOnEvent(-1, "chkSinglePBTForced")
 	_GUICtrlSetTip(-1, GetTranslated(636,62, "This forces bot to exit CoC only one time prior to normal start of PB"))
@@ -207,12 +207,14 @@ $txtPBTimeForcedExit = GUICtrlCreateInput("16", $x + 130, $y, 30, 16, BitOR($GUI
 $lblPBTimeForcedExit1 = GUICtrlCreateLabel( GetTranslated(603,9, -1), $x+162, $y+1, 27, 15)
 $y += 20
 	$lblNameMyBot = GUICtrlCreateLabel("Name Your Bot :",$x - 10, $y + 3, 78, 20)
-
+    GUICtrlSetState(-1, $GUI_HIDE)
 	$NameMyBot = GUICtrlCreateInput("",$x + 80, $y, 80, 20)
 		_GUICtrlSetTip(-1, "Will Update Name Label in Header Image on Next Restart of the Bot.")
+		GUICtrlSetState(-1, $GUI_HIDE)
 		$btnNameMyBot = GUICtrlCreateButton("Enter",$x + 80+83, $y, 35, 20)
+		GUICtrlSetState(-1, $GUI_HIDE)
 			GUICtrlSetOnEvent(-1, "NameMyBotUpdate")
-
+GUICtrlSetState(-1, $GUI_HIDE)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 
 Func NameMyBotUpdate()

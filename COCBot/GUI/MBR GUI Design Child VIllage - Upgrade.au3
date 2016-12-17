@@ -256,8 +256,8 @@ Global $lblWallCost, $cmbWalls, $UseGold, $UseElixir, $UseElixirGold, $txtWallMi
 			GUICtrlSetState(-1, $GUI_ENABLE)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)
 			GUICtrlSetOnEvent(-1, "chkSaveWallBldr")
-		$chkUpgradeContinually = GUICtrlCreateCheckbox("Upgrade Continually", $x+18, $y + 92, -1, -1)
-			$TxtTip = "Check this to Upgrade Walls Continually Until Reaching The Minimum Number Of Resources"
+		$chkUpgradeContinually = GUICtrlCreateCheckbox(GetTranslated(1005,1,"Upgrade Continually"), $x+18, $y + 92, -1, -1)
+			$TxtTip = GetTranslated(1005,2, "Check this to Upgrade Walls Continually Until Reaching The Minimum Number Of Resources")
 			_GUICtrlSetTip(-1, $TxtTip)
 			GUICtrlSetState(-1, $GUI_ENABLE)
 			GUICtrlSetState(-1, $GUI_UNCHECKED)

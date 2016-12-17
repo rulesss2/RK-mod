@@ -715,20 +715,20 @@ _GUICtrlSetTip(-1, $txtTip)
 $lblCloseWaitRdmPercent = GUICtrlCreateLabel("%", $x + 84, $y + 3, -1, -1)
 _GUICtrlSetTip(-1, $txtTip)
 $y += 28
-$lblCloseWaitingTroops = GUICtrlCreateLabel("Minimum Time To Close : ", $x - 12, $y, -1, -1)
-$txtTip = "Will be close CoC If train time troops >= (Minimum time required to close)" & @CRLF & _
-		"Just stay in the main screen if train time troops < (Minimum time required to close)"
+$lblCloseWaitingTroops = GUICtrlCreateLabel(GetTranslated(641,36,"Minimum Time To Close : "), $x - 12, $y, -1, -1)
+$txtTip = GetTranslated(641,37, "Will be close CoC If train time troops >= (Minimum time required to close)") & @CRLF & _
+GetTranslated(641,38,	"Just stay in the main screen if train time troops < (Minimum time required to close)")
 GUICtrlSetState(-1, $GUI_UNCHECKED)
 _GUICtrlSetTip(-1, $txtTip)
 GUICtrlSetOnEvent(-1, "chkCloseWaitEnable")
 $y += 22
 $lblSymbolWaiting = GUICtrlCreateLabel(">", $x + 26, $y + 3, -1, -1)
-$txtTip = "Enter number Minimum time to close in minutes for close CoC which you want, Default Is (2)"
+$txtTip = GetTranslated(641,39, "Enter number Minimum time to close in minutes for close CoC which you want, Default Is (2)")
 _GUICtrlSetTip(-1, $txtTip)
 $cmbMinimumTimeClose = GUICtrlCreateCombo("", $x + 36, $y, 40, 18, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
 GUICtrlSetData(-1, "2|3|4|5|6|7|8|9|10", "2")
 _GUICtrlSetTip(-1, $txtTip)
-$lblWaitingInMinutes = GUICtrlCreateLabel("Min", $x + 84, $y + 3, -1, -1)
+$lblWaitingInMinutes = GUICtrlCreateLabel(GetTranslated(641,40,"Min"), $x + 84, $y + 3, -1, -1)
 _GUICtrlSetTip(-1, $txtTip)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 

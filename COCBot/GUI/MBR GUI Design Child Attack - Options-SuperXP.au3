@@ -19,7 +19,7 @@ Local $x = 25, $y = 45, $xStart = 25, $yStart = 45
 	$grpSuperXP = GUICtrlCreateGroup(GetTranslated(700, 1, "Goblin XP"), $x - 20, $y - 20, 420, 305)
 		$chkEnableSuperXP = GUICtrlCreateCheckbox(GetTranslated(700, 2, "Enable Goblin XP"), $x, $y, 102, 17)
 		GUICtrlSetOnEvent(-1, "chkEnableSuperXP")
-			$rbSXTraining = GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 23, 165, 17)
+			$rbSXTraining = GUICtrlCreateRadio(GetTranslated(700, 3, "Farm XP during troops Training"), $x, $y + 23, 176, 17)
 			GUICtrlSetState(-1, $GUI_CHECKED)
 			$lblLOCKEDSX = GUICtrlCreateLabel(GetTranslated(700, 13, "LOCKED"), $x + 210, $y + 23, 173, 50)
 			GUICtrlSetFont(-1, 30, 800, 0, "Arial")

@@ -116,25 +116,25 @@ Local $x = 25, $y = 45
       $IMGchkDBHasteSpellWait = GUICtrlCreateIcon($pIconLib, $eIcnHasteSpell, $x+161, $y, 22, 22)
 	$y += 22
 	$x = 10
-		$chkDBSpellsWait = GUICtrlCreateCheckbox("Wait for Spells to be Ready", $x, $y, -1, -1)
+		$chkDBSpellsWait = GUICtrlCreateCheckbox(GetTranslated(625,99, "Wait for Spells to be Ready"), $x, $y, -1, -1)
 			$txtTip = GetTranslated(625,100, "Stop searching for this attack type when Spells are not ready") & @CRLF & _
 			GetTranslated(625,101, "Warning: Do not enable unless you have spell factory or bot will not attack!")
  			_GUICtrlSetTip(-1, $txtTip)
  			GUICtrlSetOnEvent(-1, "chkDBSpellsWait")
 
 
-		$chkDBWaitForCastleSpell = GUICtrlCreateCheckbox("Wait to get Castle Spell", $x, $y + 25, -1, -1)
-			$txtTip = "Wait until Someone Donate you an Spell"
+		$chkDBWaitForCastleSpell = GUICtrlCreateCheckbox(GetTranslated(1010,6, "Wait to get Castle Spell"), $x, $y + 25, -1, -1)
+			$txtTip = GetTranslated(1010,7, "Wait until Someone Donate you an Spell")
 			_GUICtrlSetTip(-1, $txtTip)
 			GUICtrlSetOnEvent(-1, "chkDBWaitForCCSpell")
 
-		$cmbDBWaitForCastleSpell = GUICtrlCreateCombo("Any", $x, $y + 50, -1, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
-			$txtTip = "Wait until Someone Donate this Spell, Else remove other spells in Castle and Request AGAIN"
-			GUICtrlSetData(-1, "Poison|EarthQuake|Haste|Skeleton")
+		$cmbDBWaitForCastleSpell = GUICtrlCreateCombo(GetTranslated(1010,10, "Any"), $x, $y + 50, -1, -1, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+			$txtTip = GetTranslated(1010,11, "Wait until Someone Donate this Spell, Else remove other spells in Castle and Request AGAIN")
+			GUICtrlSetData(-1, GetTranslated(1010,12, "Poison|EarthQuake|Haste|Skeleton"))
 			_GUICtrlSetTip(-1, $txtTip)
 
-		$chkDBWaitForCastleTroops = GUICtrlCreateCheckbox("Wait to for Castle troops to be full", $x, $y + 75, -1, -1)
-			$txtTip = "Wait until your Clan Castle be Full"
+		$chkDBWaitForCastleTroops = GUICtrlCreateCheckbox(GetTranslated(1010,8,"Wait to for Castle troops to be full"), $x, $y + 75, -1, -1)
+			$txtTip = GetTranslated(1010,9, "Wait until your Clan Castle be Full")
 			_GUICtrlSetTip(-1, $txtTip)
 	GUICtrlCreateGroup("", -99, -99, 1, 1)
 
@@ -209,7 +209,7 @@ Local $x = 220, $y = 45
 			$txtTip = GetTranslated(625,35, "Search for a base that has an exposed Townhall. (Outside of Walls)")
 			_GUICtrlSetTip(-1, $txtTip)
 		$y += 24
-	GUICtrlCreateGroup("Weak base | max defenses", $x, $y, 215, 100)
+	GUICtrlCreateGroup(GetTranslated(1002,1, "Weak base | max defenses"), $x, $y, 215, 100)
 	$x += 5
 	$y += 20
 	$xStarColumn = $x
