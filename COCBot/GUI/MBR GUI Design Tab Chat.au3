@@ -62,16 +62,6 @@ GUISwitch($hGUI_Chat)
    GUICtrlSetTip($chkUseResponses, GetTranslated(106,19,"Use the keywords and responses defined below"))
    GUICtrlSetState($chkUseResponses, $ChatbotClanUseResponses)
    GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
-   ;$y += 22
-   ;$chkUseCleverbot = GUICtrlCreateCheckbox(GetTranslated(106,20,"Use cleverbot responses"), $x - 10, $y)
-  ; GUICtrlSetTip($chkUseCleverbot, GetTranslated(106,21,"Get responses from cleverbot.com"))
-  ; GUICtrlSetState($chkUseCleverbot, $ChatbotClanUseCleverbot)
-  ; GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
-   ;$y += 22
-  ; $chkUseSimsimi = GUICtrlCreateCheckbox(GetTranslated(106,22,"Use simsimi responses"), $x - 10, $y)
-  ; GUICtrlSetTip($chkUseSimsimi, GetTranslated(106,23,"Get responses from simsimi.com"))
-  ; GUICtrlSetState($chkUseSimsimi, $ChatbotClanUseSimsimi)
-  ; GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
    $y += 22
    $chkUseGeneric = GUICtrlCreateCheckbox(GetTranslated(106,24,"Use generic chats"), $x - 10, $y)
    GUICtrlSetTip($chkUseGeneric, GetTranslated(106,25,"Use generic chats if reading the latest chat failed or there are no new chats"))
