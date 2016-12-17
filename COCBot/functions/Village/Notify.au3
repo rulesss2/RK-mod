@@ -350,13 +350,13 @@ Func NotifyPushFileToTelegram($File, $Folder, $FileType, $body)
 	If $NotifyTGEnabled = 1 And $NotifyTGToken <> ""  Then
 		If FileExists($sProfilePath & "\" & $sCurrProfile & '\' & $Folder & '\' & $File) Then
 
-			Local $oHTTP = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
+			Local $oHTTP2 = ObjCreate("WinHTTP.WinHTTPRequest.5.1")
 			Local $telegram_url = "https://api.telegram.org/bot" & $NotifyTGToken & "/sendPhoto"
 			$Result = RunWait($pCurl & " -i -X POST " & $telegram_url & ' -F chat_id="' & $TGChatID &' " -F photo=@"' & $sProfilePath & "\" & $sCurrProfile & '\' & $Folder & '\' & $File  & '"', "", @SW_HIDE)
-			$oHTTP.Open("Post", "https://api.telegram.org/bot" & $NotifyTGToken & "/sendPhoto", False)
-			$oHTTP.SetRequestHeader("Content-Type", "application/json")
+			$oHTTP2.Open("Post", "https://api.telegram.org/bot" & $NotifyTGToken & "/sendPhoto", False)
+			$oHTTP2.SetRequestHeader("Content-Type", "application/json")
 			Local $pPush = '{"type": "file", "file_name": "' & $File & '", "file_type": "' & $FileType & '", "file_url": "' & $telegram_url & '", "body": "' & $body & '"}'
-			$oHTTP.Send($pPush)
+			$oHTTP2.Send($pPush)
 		Else
 			SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,726,"Unable to send file") & " " & $File, $COLOR_RED)
 			NotifyPushToTelegram($NotifyOrigin & " | " & GetTranslated(620,170,"Unable to Upload File") & "\n" & GetTranslated(620,146,"Occured an error type 2 uploading file to Telegram server..."))
@@ -424,7 +424,7 @@ Func NotifyActivateKeyboardOnTelegram($TGMsg)
 	'\u25b6 ' & GetTranslated(620,809,"Resume") & '","' & _
 	'\ud83d\udd01 ' & GetTranslated(620,810,"Restart") & '"],["' & _
 	'\ud83d\udccb ' & GetTranslated(620,811,"Log") & '","' & _
-	'\uD83D\uDCB0 ' & GetTranslated(620,812,"Lastraid") & '","' & _
+	'\uD83D\uDCB0 ' &"LASTRAID" & '","' & _
 	'\uD83D\uDCB0 ' & GetTranslated(620,813,"LastRaidTxt") & '"],["' & _
 	'\u2705 ' & GetTranslated(620,814,"Attack On") & '","' & _
 	'\u274C ' & GetTranslated(620,815,"Attack Off") & '"],["' & _
@@ -878,7 +878,7 @@ Func NotifyRemoteControlProc($OnlyPB)
 					Case GetTranslated(620,19,"LOG"), '\ud83d\udccb ' & GetTranslated(620,19,"LOG")
 						SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,711,"Your request has been received from ") & $NotifyOrigin & ". " & GetTranslated(620,712,"Log is now sent"), $COLOR_GREEN)
 						NotifyPushFileToTelegram($sLogFName, "logs", "text\/plain; charset=utf-8", $NotifyOrigin & " | Current Log " & "\n")
-					Case GetTranslated(620,21,"LASTRAID"), '\uD83D\uDCB0 ' & GetTranslated(620,21,"LASTRAID")
+					Case "LASTRAID", '\uD83D\uDCB0 ' & GetTranslated(620,21,"LASTRAID")
 						 If $LootFileName <> "" Then
 							NotifyPushFileToTelegram($LootFileName, GetTranslated(620,120, "Loots"), "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,152,"Last Raid") & "\n" & $LootFileName)
 							SetLog(GetTranslated(620,701,"Notify Telegram") & ": " & GetTranslated(620,713,"Push Last Raid Snapshot..."), $COLOR_GREEN)
@@ -1085,7 +1085,7 @@ Func NotifyPushMessageToBoth($Message, $Source = "")
 				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,728,"Last Raid screenshot has been sent!"), $COLOR_GREEN)
 				NotifyPushFileToBoth($AttackFile, GetTranslated(620,120, "Loots"), "image/jpeg", $NotifyOrigin & " | " & GetTranslated(620,118, "Last Raid") & "\n" & $AttackFile)
 				;wait a second and then delete the file
-				If _Sleep($iDelayPushMsg1) Then Return
+				If _Sleep(1500) Then Return
 				Local $iDelete = FileDelete($dirLoots & $AttackFile)
 				SetLog(GetTranslated(620,700,"Notify PushBullet") & ": " & GetTranslated(620,729,"An error occurred deleting temporary screenshot file."), $COLOR_RED)
 			EndIf
