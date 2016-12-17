@@ -1858,6 +1858,9 @@ Global $ichkOutSideCollectors, $itxtSensCollectors, $stxtPercentCollectors
 Global $ichkOutSideMines, $itxtSensMines, $stxtPercentMines
 Global $ichkOutSideDrills, $itxtSensDrills, $stxtPercentDrills
 
+; Smart farm attack
+Global $ichkSmartFarmAttack = 0
+
 #include "MOD\GLobal Variables - Mod.au3"	;	Adding SwitchAcc - Demen
 ;=== No variables below ! ================================================
 ; early load of config

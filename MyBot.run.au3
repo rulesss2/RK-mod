@@ -204,6 +204,7 @@ LoadAmountOfResourcesImages()
 ;~ InitializeVariables();initialize variables used in extra windows
 ;~ CheckVersion() ; check latest version on mybot.run site
 SetComboTroopComp()
+chkSmarFarmAttack()
 
 ;~ Update profile to write config for SwitchAcc Mode - DEMEN
 btnUpdateProfile()

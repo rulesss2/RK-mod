@@ -402,6 +402,8 @@ Func readConfig($inputfile = $config, $partial = False) ;Reads config and sets i
 
 		IniReadS($iCmbSmartDeploy[$DB], $config, "attack", "DBSmartAttackDeploy", "0")
 
+		IniReadS($ichkSmartFarmAttack, $config, "attack", "SmartFarmAttack", "0")
+
 		IniReadS($iChkSmartAttack[$DB][0], $config, "attack", "DBSmartAttackGoldMine", "0")
 		IniReadS($iChkSmartAttack[$DB][1], $config, "attack", "DBSmartAttackElixirCollector", "0")
 		IniReadS($iChkSmartAttack[$DB][2], $config, "attack", "DBSmartAttackDarkElixirDrill", "0")

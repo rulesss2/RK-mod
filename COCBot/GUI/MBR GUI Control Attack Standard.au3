@@ -65,11 +65,13 @@ EndFunc   ;==>chkSmartAttackRedAreaDB
 
 Func chkSmarFarmAttack()
  	If GUICtrlRead($chkSmartFarmAttack) = $GUI_CHECKED Then
- 		For $i = $lblDBmode to $picAttackNearDarkElixirDrillDB
+ 		$ichkSmartFarmAttack = 1
+		For $i = $lblDBmode to $picAttackNearDarkElixirDrillDB
  			GUICtrlSetState($i, $GUI_DISABLE)
  		Next
  	Else
- 		For $i = $lblDBmode to $picAttackNearDarkElixirDrillDB
+ 		$ichkSmartFarmAttack = 0
+		For $i = $lblDBmode to $picAttackNearDarkElixirDrillDB
  			GUICtrlSetState($i, $GUI_ENABLE)
  		Next
  	EndIf
