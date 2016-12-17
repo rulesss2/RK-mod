@@ -21,7 +21,7 @@ Func ReArm()
 	$iShouldRearm = False
 	;	Local $y = 562 + $bottomOffsetY ; Add 60 y pixel for 860x780 window
 
-	SetLog("Checking if Village needs Rearming..", $COLOR_BLUE)
+	SetLog("Checking if Village needs Rearming..", $COLOR_INFO)
 
 	;- Variables to use with ImgLoc -
 	; --- ReArm Buttons Detection ---
@@ -45,7 +45,6 @@ Func ReArm()
 	If _Sleep($iDelayReArm4) Then Return
 
 	If IsMainPage() Then Click($TownHallPos[0], $TownHallPos[1] + 5, 1, 0, "#0225")
-	Local $TownHallPos2 = $TownHallPos[1] + 5
 
 	If _Sleep($iDelayReArm2) Then Return
 
@@ -64,17 +63,14 @@ Func ReArm()
 			$TownHallPos[0] = $pixel[0] + 5
 			$TownHallPos[1] = $pixel[1] + 5
 			If $debugSetlog = 1 Then SetLog("ImgLoc# Townhall: (" & $TownHallPos[0] & "," & $TownHallPos[1] & ")", $COLOR_DEBUG) ;Debug
-			If _Sleep($iDelayReArm4) Then Return
 
-			If IsMainPage() Then Click($TownHallPos[0], $TownHallPos[1] + 5, 1, 0, "#0225")
-			SetLog("TownHall: (" & $TownHallPos[0] & "," & $TownHallPos2 & ")", $COLOR_DEBUG)
+			SetLog("TownHall: (" & $TownHallPos[0] & "," & $TownHallPos[1] & ")", $COLOR_DEBUG)
 			GetTownHallLevel(True)
 			If $debugSetlog = 1 Then SetLog("$iTownHallLevel = " & $iTownHallLevel, $COLOR_DEBUG) ;Debug
 			saveConfig()
-			If _Sleep($iDelayReArm2) Then Return
 
-			ClickP($aAway, 1, 0, "#0224") ; Click away
-			If _Sleep($iDelayReArm4) Then Return
+			If IsMainPage() Then Click($TownHallPos[0], $TownHallPos[1] + 5, 1, 0, "#0225")
+			If _Sleep($iDelayReArm2) Then Return
 		EndIf
 	EndIf
 
