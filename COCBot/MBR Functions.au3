@@ -39,6 +39,7 @@
 #include "functions\Attack\Attack Algorithms\algorithmTH.au3"
 #include "functions\Attack\Attack Algorithms\THAttackTypes.au3"
 #include "functions\Attack\Attack Algorithms\AttackFromCSV.au3"
+#include "functions\Attack\Attack Algorithms\SmartFarmAttack.au3"
 
 #include "functions\Attack\AttackCSV\AttackCSVDebugImage.au3"
 #include "functions\Attack\AttackCSV\CheckCSVValues.au3"

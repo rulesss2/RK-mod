@@ -12,6 +12,7 @@
 ; Link ..........: https://github.com/MyBotRun/MyBot/wiki
 ; Example .......: No
 ; ===============================================================================================================================
+;Added by rulesss
 
 Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 	If $debugSetlog = 1 Then Setlog("algorithm_AllTroops", $COLOR_DEBUG) ;Debug
@@ -55,8 +56,7 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		EndIf
 	EndIf
 
-
-
+     If $iMatchMode = $DB and $ichkSmartFarmAttack = 1 then algorithm_SmartFarmAttack()
 	;############################################# LSpell Attack ############################################################
 	; DropLSpell()
 	;########################################################################################################################
