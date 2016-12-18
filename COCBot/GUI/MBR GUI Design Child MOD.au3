@@ -116,7 +116,7 @@ $chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
    GUICtrlSetState($chkClanChat, $ChatbotChatClan)
    GUICtrlSetOnEvent(-1, "ChatGuiCheckboxUpdate")
 	GUICtrlCreateLabel(GetTranslated(106, 16, "Chat in clan chat") & ":", $x + 7, $y, -1, -1)
-	$chkRusLang = GUICtrlCreateCheckbox(GetTranslated(106, 52, "Russian"), $x + 120, $y - 5)
+	$chkRusLang = GUICtrlCreateCheckbox(GetTranslated(106, 52, "Russian"), $x + 125, $y - 5)
    GUICtrlSetState(-1, $GUI_UNCHECKED)
    _GUICtrlSetTip(-1, GetTranslated(106,51, "On. Russian send text. Note: The input language in the Android emulator must be RUSSIAN."))
    ;GUICtrlSetOnEvent(-1, "chkRusLang")
