@@ -42,7 +42,7 @@ $x += 7
 $y += 3
 		$grpOutCollectors = GUICtrlCreateGroup(GetTranslated(626, 43, "Elixir Collectors"), $x, $y+51, 177, 65)
 			$chkOutSideCollectors = GUICtrlCreateCheckbox(GetTranslated(626, 46, "OutSide"), $x+8, $y+67, 63, 17)
-				GUICtrlSetTip(-1, $txtTipOutSide1 & " Collectors")
+				GUICtrlSetTip(-1, $txtTipOutSide1)
 				GUICtrlSetOnEvent(-1, "chkOutSideCollectors")
 			GUICtrlCreateLabel(GetTranslated(626, 47, "Sensitivity") & ":", $x+79, $y+69, 54, 17)
 			$txtSensCollectors = GUICtrlCreateInput("60", $x+136, $y+67, 33, 21, BitOR($GUI_SS_DEFAULT_INPUT,$ES_CENTER))
