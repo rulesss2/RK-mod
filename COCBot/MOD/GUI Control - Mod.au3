@@ -13,7 +13,7 @@
 ; Example .......: No
 ; ===============================================================================================================================
 
-; GUI Control for SwitchAcc Mode - DEMEN
+; GUI Control for SwitchAcc Mode
 
  Func radProfileType()
 	If GUICtrlRead($radIdleProfile) = $GUI_CHECKED Then
@@ -222,33 +222,35 @@ Func btnClearAccLocation()
 	saveConfig()
 EndFunc
 
-; ============= SwitchAcc Mode ============= - DEMEN
+; ============= SwitchAcc Mode =============
 
-; GUI Control for Classic FourFinger Attack - DEMEN
-Func cmbDeployAB() ; avoid conflict between FourFinger and SmartAttack - DEMEN
-   If _GUICtrlCombobox_GetCurSel($cmbDeployAB) = 5 Then
-	  GUICtrlSetState($chkSmartAttackRedAreaAB, $GUI_UNCHECKED)
-	  GUICtrlSetState($chkSmartAttackRedAreaAB, $GUI_DISABLE)
-   Else
-	  GUICtrlSetState($chkSmartAttackRedAreaAB, $GUI_ENABLE)
-   EndIf
-EndFunc
+; GUI Control for Classic FourFinger Attack
+Func cmbDeployAB() ; avoid conflict between FourFinger and SmartAttack
+	If _GUICtrlComboBox_GetCurSel($cmbDeployAB) = 4 Or _GUICtrlComboBox_GetCurSel($cmbDeployAB) = 5 Then
+		GUICtrlSetState($chkSmartAttackRedAreaAB, $GUI_UNCHECKED)
+		GUICtrlSetState($chkSmartAttackRedAreaAB, $GUI_DISABLE)
+	Else
+		GUICtrlSetState($chkSmartAttackRedAreaAB, $GUI_ENABLE)
+	EndIf
+	chkSmartAttackRedAreaAB()
+EndFunc   ;==>cmbDeployAB
 
-Func cmbDeployDB() ; avoid conflict between FourFinger and SmartAttack - DEMEN
-   If _GUICtrlCombobox_GetCurSel($cmbDeployDB) = 5 Then
-	  GUICtrlSetState($chkSmartAttackRedAreaDB, $GUI_UNCHECKED)
-	  GUICtrlSetState($chkSmartAttackRedAreaDB, $GUI_DISABLE)
-   Else
-	  GUICtrlSetState($chkSmartAttackRedAreaDB, $GUI_ENABLE)
-   EndIf
-EndFunc
-; ============= Classic FourFinger Attack ============ - DEMEN
+Func cmbDeployDB() ; avoid conflict between FourFinger and SmartAttack
+	If _GUICtrlComboBox_GetCurSel($cmbDeployDB) = 4 Or _GUICtrlComboBox_GetCurSel($cmbDeployDB) = 5 Then
+		GUICtrlSetState($chkSmartAttackRedAreaDB, $GUI_UNCHECKED)
+		GUICtrlSetState($chkSmartAttackRedAreaDB, $GUI_DISABLE)
+	Else
+		GUICtrlSetState($chkSmartAttackRedAreaDB, $GUI_ENABLE)
+	EndIf
+	chkSmartAttackRedAreaDB()
+EndFunc   ;==>cmbDeployDB
+; ============= Classic FourFinger Attack ============
 
 ; GUI Control for Multi Finger Attack-rulesss
 Func Bridge()
     cmbDeployDB()
     cmbDBMultiFinger()
-EndFunc
+EndFunc ;==>Bridge
 ; GUI Control for Multi Finger Attack-rulesss
 
 ; CSV Deployment Speed Mod
