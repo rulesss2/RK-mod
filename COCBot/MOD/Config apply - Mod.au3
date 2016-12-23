@@ -122,6 +122,9 @@
 _GUICtrlComboBox_SetCurSel($cmbDBMultiFinger,$iMultiFingerStyle)
 cmbDBMultiFinger()
 
+cmbDeployAB()
+cmbDeployDB()
+
 ; CSV Deployment Speed Mod
 GUICtrlSetData($sldSelectedSpeedDB, $isldSelectedCSVSpeed[$DB])
 GUICtrlSetData($sldSelectedSpeedAB, $isldSelectedCSVSpeed[$LB])
