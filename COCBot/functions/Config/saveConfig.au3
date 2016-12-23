@@ -1071,12 +1071,6 @@ If GUICtrlRead($chkNotifyBOTSleep) = $GUI_CHECKED Then
 		$chkATH = 0
 	EndIf
 
-	If GUICtrlRead($chkSmartFarmAttack) = $GUI_CHECKED Then
- 		IniWriteS($config, "attack", "SmartFarmAttack", "1")
- 	Else
- 		IniWriteS($config, "attack", "SmartFarmAttack", "0")
- 	EndIf
-
 	$iCmbStandardAlgorithm[$LB] = _GUICtrlComboBox_GetCurSel($cmbStandardAlgorithmAB)
 	$iChkDeploySettings[$LB] = _GUICtrlComboBox_GetCurSel($cmbDeployAB)
 	$iCmbUnitDelay[$LB] = _GUICtrlComboBox_GetCurSel($cmbUnitDelayAB)

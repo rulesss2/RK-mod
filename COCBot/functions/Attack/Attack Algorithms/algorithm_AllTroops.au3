@@ -56,7 +56,6 @@ Func algorithm_AllTroops() ;Attack Algorithm for all existing troops
 		EndIf
 	EndIf
 
-     If $iMatchMode = $DB and $ichkSmartFarmAttack = 1 then algorithm_SmartFarmAttack()
 	;############################################# LSpell Attack ############################################################
 	; DropLSpell()
 	;########################################################################################################################

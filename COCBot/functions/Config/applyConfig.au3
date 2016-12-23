@@ -2551,11 +2551,6 @@ If $NotifyAlertBOTSleep = 1 Then
 		GUICtrlSetState($chkAttackNearDarkElixirDrillAB, $GUI_UNCHECKED)
 	EndIf
 
-	If $ichkSmartFarmAttack = 1 Then
- 		GUICtrlSetState($chkSmartFarmAttack, $GUI_CHECKED)
- 	Else
- 		GUICtrlSetState($chkSmartFarmAttack, $GUI_UNCHECKED)
- 	EndIf
 
 	; SuperXP
 	If $ichkEnableSuperXP = 1 Then

@@ -37,6 +37,7 @@ Func chkSmartAttackRedAreaAB()
 		Next
 	EndIf
 EndFunc   ;==>chkSmartAttackRedAreaAB
+
 Func chkRandomSpeedAtkDB()
 	If GUICtrlRead($chkRandomSpeedAtkDB) = $GUI_CHECKED Then
 		;$iChkDBRandomSpeedAtk = 1
@@ -62,17 +63,3 @@ Func chkSmartAttackRedAreaDB()
 		Next
 	EndIf
 EndFunc   ;==>chkSmartAttackRedAreaDB
-
-Func chkSmarFarmAttack()
- 	If GUICtrlRead($chkSmartFarmAttack) = $GUI_CHECKED Then
- 		$ichkSmartFarmAttack = 1
-		For $i = $lblDBmode to $picAttackNearDarkElixirDrillDB
- 			GUICtrlSetState($i, $GUI_DISABLE)
- 		Next
- 	Else
- 		$ichkSmartFarmAttack = 0
-		For $i = $lblDBmode to $picAttackNearDarkElixirDrillDB
- 			GUICtrlSetState($i, $GUI_ENABLE)
- 		Next
- 	EndIf
-EndFunc
